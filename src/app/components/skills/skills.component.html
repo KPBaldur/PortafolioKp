@@ -1,0 +1,36 @@
+<section id="skills" class="skills">
+  <div class="skills-container">
+    <header class="skills-header">
+      <h2>Habilidades Técnicas en Desarrollo de Software y Tecnologías Digitales</h2>
+      <p class="skills-intro">
+        Cuento con experiencia en desarrollo web, backend y frontend, empleando tecnologías como Angular, React, Node.js, Python, C#, C++ y .NET. Mis habilidades abarcan tanto el diseño de interfaces como la optimización de sistemas y el desarrollo de videojuegos con Unreal Engine 5.
+      </p>
+    </header>
+
+    <div class="skills-grid">
+      <!-- Frontend Development -->
+      <article class="skill-category" *ngFor="let category of [skills.frontend, skills.backend, skills.database, skills.gameDev, skills.adobe, skills.tools]">
+        <div class="skill-card">
+          <div class="skill-header">
+            <i [class]="'bx ' + category.icon" class="skill-icon"></i>
+            <h3>{{ category.title }}</h3>
+          </div>
+          
+          <ul class="skill-list">
+            <li *ngFor="let tech of category.technologies" class="skill-item">
+              <div class="skill-info">
+                <i [class]="tech.icon" class="tech-icon" [attr.alt]="'Logo de ' + tech.name"></i>
+                <span class="tech-name">{{ tech.name }}</span>
+              </div>
+              <div class="skill-level">
+                <span class="level-badge" [ngClass]="getLevelClass(tech.level)">
+                  {{ tech.level }}
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

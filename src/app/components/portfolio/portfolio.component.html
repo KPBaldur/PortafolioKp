@@ -1,0 +1,111 @@
+<section id="portfolio" class="portfolio">
+  <h2>Portafolio</h2>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button
+      *ngFor="let c of categories"
+      class="tab-btn"
+      [class.active]="c.id === selectedCategory"
+      (click)="selectCategory(c.id)"
+    >
+      {{ c.label }}
+    </button>
+  </div>
+
+  <!-- Estado vacío -->
+  <div *ngIf="isEmpty" class="empty-state">
+    <h3>Próximamente nuevos proyectos</h3>
+    <p>
+      Esta sección aún no tiene trabajos publicados.
+      Estoy afinando demos y renders para compartirlos pronto. 💫
+    </p>
+  </div>
+
+  <!-- Contenido -->
+  <div *ngIf="!isEmpty" class="portfolio-container">
+    <!-- Vista de cuadrícula para Web & Software -->
+    <div *ngIf="selectedCategory === 'web'" class="web-projects-grid">
+      <div
+        *ngFor="let project of projects"
+        class="web-project-card"
+        (click)="openModal(project)"
+      >
+        <div class="web-project-image-container">
+          <img [src]="project.images[0]" [alt]="project.title" class="web-project-image" />
+          <div class="web-project-overlay">
+            <div class="web-project-links">
+              <a *ngIf="project.repo" [href]="project.repo" target="_blank" class="project-link">
+                <i class="bx bxl-github"></i>
+              </a>
+              <a *ngIf="project.demo" [href]="project.demo" target="_blank" class="project-link">
+                <i class="bx bx-link-external"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="web-project-info">
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.description }}</p>
+          <div class="web-project-tech">
+            <span *ngFor="let tech of project.tech.split(' – ')" class="tech-tag">{{ tech }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vista tradicional para otras categorías -->
+    <div *ngIf="selectedCategory !== 'web'" class="traditional-view">
+      <div class="portfolio-detail" #carouselSection>
+        <div class="carousel">
+          <button class="carousel-btn prev" (click)="prevImage()">&#10094;</button>
+
+          <div class="carousel-track">
+            <img
+              *ngIf="selectedProject"
+              [src]="selectedProject.images[currentImage]"
+              [alt]="selectedProject.title"
+              [class]="getImageAnimationClass()"
+            />
+          </div>
+
+          <button class="carousel-btn next" (click)="nextImage()">&#10095;</button>
+        </div>
+
+        <h3>{{ selectedProject?.title }}</h3>
+        <h4>Tecnologías: {{ selectedProject?.tech }}</h4>
+        <p>{{ selectedProject?.description }}</p>
+
+        <div class="links">
+          <a *ngIf="selectedProject!.repo" [href]="selectedProject!.repo" target="_blank" (click)="$event.stopPropagation()">
+            <i class="bx bxl-github"></i> Repositorio
+          </a>
+          <a *ngIf="selectedProject!.demo" [href]="selectedProject!.demo" target="_blank" (click)="$event.stopPropagation()">
+            <i class="bx bx-link-external"></i> Ver Proyecto
+          </a>
+        </div>
+      </div>
+
+      <!-- Lista lateral -->
+      <div class="portfolio-list">
+        <div
+          *ngFor="let project of projects"
+          class="project-card"
+          [class.active]="project === selectedProject"
+          (click)="openModal(project)"
+        >
+          <img [src]="project.images[0]" [alt]="project.title" />
+          <h4>{{ project.title }}</h4>
+          <p>{{ project.tech }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal de detalles del proyecto -->
+<app-project-detail-modal
+  [isOpen]="isModalOpen"
+  [project]="selectedProjectForModal"
+  (close)="closeModal()">
+</app-project-detail-modal>

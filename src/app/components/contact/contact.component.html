@@ -1,0 +1,99 @@
+<section id="contact" class="contact">
+  <div class="contact-container">
+    <header class="contact-header">
+      <h2>Contacto</h2>
+      <p class="contact-description">
+        Formulario de contacto y enlaces a redes sociales para conectarte conmigo.
+      </p>
+    </header>
+
+    <div class="contact-content">
+      <!-- Formulario de Contacto -->
+      <article class="contact-form-section">
+        <h3>Formulario de contacto</h3>
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form" novalidate>
+          <div class="form-group">
+            <label for="name" class="form-label">Nombre completo *</label>
+            <input type="text" id="name" formControlName="name" class="form-input"
+              [class.error]="isFieldInvalid('name')" placeholder="Tu nombre completo" aria-describedby="name-error">
+            <div *ngIf="isFieldInvalid('name')" id="name-error" class="error-message" role="alert">
+              {{ getFieldError('name') }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Correo electrónico *</label>
+            <input type="email" id="email" formControlName="email" class="form-input"
+              [class.error]="isFieldInvalid('email')" placeholder="tu@email.com" aria-describedby="email-error">
+            <div *ngIf="isFieldInvalid('email')" id="email-error" class="error-message" role="alert">
+              {{ getFieldError('email') }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="subject" class="form-label">Asunto *</label>
+            <input type="text" id="subject" formControlName="subject" class="form-input"
+              [class.error]="isFieldInvalid('subject')" placeholder="¿En qué puedo ayudarte?"
+              aria-describedby="subject-error">
+            <div *ngIf="isFieldInvalid('subject')" id="subject-error" class="error-message" role="alert">
+              {{ getFieldError('subject') }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message" class="form-label">Mensaje *</label>
+            <textarea id="message" formControlName="message" class="form-textarea"
+              [class.error]="isFieldInvalid('message')" placeholder="Cuéntame sobre tu proyecto o consulta..." rows="5"
+              aria-describedby="message-error"></textarea>
+            <div *ngIf="isFieldInvalid('message')" id="message-error" class="error-message" role="alert">
+              {{ getFieldError('message') }}
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit" [disabled]="isSubmitting">
+            <span *ngIf="!isSubmitting">Enviar Mensaje</span>
+            <span *ngIf="isSubmitting">Enviando...</span>
+          </button>
+
+          <!-- Mensaje de confirmación/error -->
+          <div *ngIf="showMessage" class="submit-message" [class.success]="submitMessage.includes('exitosamente')"
+            [class.error]="submitMessage.includes('error')" role="alert">
+            <i class='bx' [class]="submitMessage.includes('exitosamente') ? 'bx-check-circle' : 'bx-error-circle'"></i>
+            {{ submitMessage }}
+          </div>
+        </form>
+      </article>
+
+      <!-- Otras formas de contacto -->
+      <article class="social-contact-section">
+        <h3>Otras formas de contacto</h3>
+        <p class="social-description">
+          También puedes contactarme directamente a través de mis redes sociales:
+        </p>
+
+        <div class="social-buttons">
+          <a [href]="socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="social-btn linkedin"
+            (click)="onSocialClick('LinkedIn')" aria-label="Visitar mi perfil de LinkedIn"
+            title="Conecta conmigo en LinkedIn">
+            <i class='bx bxl-linkedin-square' alt="Logo de LinkedIn"></i>
+            <span>LinkedIn</span>
+          </a>
+
+          <a [href]="socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="social-btn instagram"
+            (click)="onSocialClick('Instagram')" aria-label="Visitar mi perfil de Instagram"
+            title="Sígueme en Instagram">
+            <i class='bx bxl-instagram' alt="Logo de Instagram"></i>
+            <span>Instagram</span>
+          </a>
+
+          <a [href]="socialLinks.whatsapp" target="_blank" rel="noopener noreferrer" class="social-btn whatsapp"
+            (click)="onSocialClick('WhatsApp')" aria-label="Enviar mensaje por WhatsApp"
+            title="Chatea conmigo por WhatsApp">
+            <i class='bx bxl-whatsapp' alt="Logo de WhatsApp"></i>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

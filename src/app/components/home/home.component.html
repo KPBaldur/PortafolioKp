@@ -1,0 +1,32 @@
+<section class="hero">
+  <!-- Video de fondo -->
+  <video #bgVideo class="hero-video" [muted]="true" [autoplay]="true" [loop]="true" [attr.playsinline]="''"
+    [attr.webkit-playsinline]="''" [attr.preload]="'auto'" class="hero-video">
+    <source src="../../../assets/videos/video-home.mp4" type="video/mp4" />
+  </video>
+
+  <!-- Capa oscura -->
+  <div class="overlay"></div>
+
+  <!-- Contenido principal -->
+  <div class="hero-content">
+    <h1 class="title">
+      <span class="brand-strong">Kevin</span><span class="brand-accent">Portfolio</span>
+    </h1>
+    <h2 class="roles">
+      Desarrollador Full Stack Junior | Ingeniero en Informática
+    </h2>
+    <p class="summary">
+      Ingeniero en Informática con experiencia en desarrollo web, software empresarial y en el ecosistema
+      de Unreal Engine. Me apasiona la arquitectura de software limpia y la resolución de problemas de negocio.
+    </p>
+    <blockquote class="quote">
+      “La tecnología y el arte pueden coexistir de manera brillante, creando experiencias únicas tanto para
+      desarrolladores como para usuarios.”
+    </blockquote>
+    <div class="cta">
+      <a href="#portfolio" class="btn">Ver Portafolio</a>
+      <a href="../../../assets/CV_Kevin_Pizarro_Sanchéz_2026.pdf" target="_blank" class="btn-outline">Descargar CV</a>
+    </div>
+  </div>
+</section>

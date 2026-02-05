@@ -1,0 +1,50 @@
+<div class="modal-overlay" *ngIf="isOpen && project" (click)="closeModal()">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+    <!-- Close button -->
+    <button class="close-button" (click)="closeModal()">&times;</button>
+
+    <!-- Image carousel -->
+    <div class="image-carousel" *ngIf="project.images && project.images.length > 0">
+      <div class="carousel-container">
+        <img [src]="currentImage" [alt]="project.title" class="carousel-image">
+        
+        <!-- Navigation buttons -->
+        <button class="nav-button prev" (click)="previousImage()" *ngIf="project.images.length > 1">❮</button>
+        <button class="nav-button next" (click)="nextImage()" *ngIf="project.images.length > 1">❯</button>
+        
+        <!-- Image indicators -->
+        <div class="image-indicators" *ngIf="project.images.length > 1">
+          <span 
+            *ngFor="let image of project.images; let i = index" 
+            class="indicator" 
+            [class.active]="i === currentImageIndex" 
+            (click)="goToImage(i)">
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project content -->
+    <div class="project-content">
+      <h2 class="project-title">{{ project.title }}</h2>
+      <h4 class="project-tech">{{ project.tech }}</h4>
+      <p class="project-description">{{ project.description }}</p>
+      
+      <!-- Action buttons -->
+      <div class="project-links">
+        <button 
+          *ngIf="project.repo" 
+          class="action-button" 
+          (click)="openLink($event, project.repo)">
+          Ver Repositorio
+        </button>
+        <button 
+          *ngIf="project.demo" 
+          class="action-button" 
+          (click)="openLink($event, project.demo)">
+          Ver Proyecto
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

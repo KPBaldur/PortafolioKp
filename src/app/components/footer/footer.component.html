@@ -1,0 +1,138 @@
+<footer class="footer">
+  <!-- Contenido principal del footer -->
+  <div class="footer-content">
+    <!-- Navegación del footer (mismos elementos que navbar) -->
+    <div class="footer-nav">
+      <!-- Versión móvil -->
+      <div class="footer-nav-mobile">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">Sobre mi</a></li>
+          <li><a href="#portfolio">Portafolio</a></li>
+          <li><a href="#skills">Habilidades</a></li>
+          <li><a href="#contact">Contacto</a></li>
+        </ul>
+      </div>
+
+      <!-- Versión desktop -->
+      <div class="footer-nav-desktop">
+        <!-- Izquierda -->
+        <ul class="nav-left">
+          <li><a href="#about">Sobre mi</a></li>
+          <li><a href="#portfolio">Portafolio</a></li>
+        </ul>
+
+        <!-- Centro (marca) -->
+        <div class="footer-brand">
+          <span class="brand-strong">Kevin</span><span class="brand-accent">Portfolio</span>
+          <small class="brand-sub">DEV SOFTWARE</small>
+        </div>
+
+        <!-- Derecha -->
+        <ul class="nav-right">
+          <li><a href="#skills">Habilidades</a></li>
+          <li><a href="#contact">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Separador -->
+    <div class="footer-divider"></div>
+
+    <!-- Información de derechos y agradecimientos -->
+    <div class="footer-info">
+      <div class="footer-copyright">
+        <p>Desarrollado con pasión y creatividad por <strong>Kevin Pizarro Sanchez</strong></p>
+        <p>Todos los derechos reservados © {{ currentYear }}</p>
+      </div>
+      
+      <div class="footer-acknowledgments">
+        <button class="acknowledgments-btn" (click)="openAcknowledgments()">
+          <i class="bx bx-heart"></i>
+          Agradecimientos
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de agradecimientos -->
+  <div class="acknowledgments-modal" [class.active]="showAcknowledgments" (click)="closeAcknowledgments()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Agradecimientos a:</h3>
+        <button class="close-btn" (click)="closeAcknowledgments()">
+          <i class="bx bx-x"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="acknowledgment-item">
+          <div class="acknowledgment-image">
+            <img src="assets/img/SebastianContreras.jpg" alt="Sebastian Contreras">
+          </div>
+          <div class="acknowledgment-content">
+            <h4>Profesor Sebastian Contreras</h4>
+            <p>Por su ayuda y asesoramiento en mi carrera profesional, sus consejos me sirvieron para poder mejorar mis habilidades y conocimientos en el campo de la programación.
+              Y no solo por eso, sino por su dedicación y tiempo para enseñarme que la edad solo es un número.
+            </p>
+          </div>
+        </div>
+
+        <div class="acknowledgment-item">
+          <div class="acknowledgment-image">
+            <img src="assets/img/PatricioPalma.jpg" alt="Patricio Palma">
+          </div>
+          <div class="acknowledgment-content">
+            <h4>Profesor Patricio Palma</h4>
+            <p>Sus enseñanzas y consejos me ayudaron a poder ver una perspectiva mucho mas profunda dentro de mi perfil profesional.</p>
+          </div>
+        </div>
+
+        <div class="acknowledgment-item">
+          <div class="acknowledgment-image">
+            <img src="assets/img/FelipeRobinet.jpg" alt="Felipe Robinet">
+          </div>
+          <div class="acknowledgment-content">
+            <h4>Profesor Felipe Robinet</h4>
+            <p>Gracias por incentivarnos a seguir adelante y por alentar nuestra hambre de aprendizaje, que no importa cuanto tiempo tome,
+            lo importante es el resultado y sentirnos satisfechos por lo que hemos aprendido.
+            </p>
+          </div>
+        </div>
+
+        <div class="acknowledgment-item">
+          <div class="acknowledgment-image">
+            <img src="assets/img/AlejandroTaboada.jpg" alt="Alejandro Taboada">
+          </div>
+          <div class="acknowledgment-content">
+            <h4>Alejandro Taboada -Programacion ATS</h4>
+            <p>Me enseñaste que no importa que tan loco o imposible sea, se puede programar de todas formas. Siempre mostrando la pasion en la tecnologia.</p>
+          </div>
+        </div>
+
+        <div class="acknowledgment-item">
+          <div class="acknowledgment-image">
+            <img src="assets/img/NicolasSchurmann.jpg" alt="Nicolas Schurmann">
+          </div>
+          <div class="acknowledgment-content">
+            <h4>Nicolas Schurmann - Hola mundo</h4>
+            <p>Tus videos siempre me hacian sentir que no debia quedarme comodo y salir de mi zona de confort, y que no importa que edad tenga puedo llegar lejos y seguir aprendiendo.
+            </p>
+          </div>
+        </div>
+
+        <div class="acknowledgment-item">
+          <div class="acknowledgment-image">
+            <img src="assets/img/CeciliaDuran.jpg" alt="Cecilia D.">
+          </div>
+          <div class="acknowledgment-content">
+            <h4>Cecilia D.</h4>
+            <p>Creo que no existen palabras suficientes para agradecerte el apoyo que me has brindado todo este tiempo. Tu me incentivaste a estudiar e iniciar una carrera profesional,
+              todo lo que he logrado y he podido hacer es todo gracias a ti, tu fuiste el primer paso y tu fuiste el inicio de todo lo bueno que ha sucedido hasta ahora. No existen gracias
+              suficientes para demostrarte lo agradecido que me siento.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

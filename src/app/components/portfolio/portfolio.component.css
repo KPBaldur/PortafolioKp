@@ -1,0 +1,292 @@
+/* :host {
+  display: block;
+  width: 100%;
+}
+:host ::ng-deep .portfolio-container,
+:host ::ng-deep .portfolio-detail,
+:host ::ng-deep .portfolio-list {
+  all: unset;
+}
+*/
+/* Contenedor principal del portafolio */
+.portfolio-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Panel de detalle y lista lateral */
+.portfolio-detail {
+  flex: 1 1 60%;
+  min-width: 350px;
+  max-width: 850px;
+}
+
+.portfolio-list {
+  flex: 1 1 30%;
+  min-width: 280px;
+  display: grid;
+  gap: 1.2rem;
+}
+
+/* Ajustes visuales en tarjetas */
+.project-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 14px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.project-card:hover {
+  background: rgba(255,255,255,0.08);
+  transform: scale(1.02);
+}
+.project-card.active {
+  border: 1px solid var(--color-celeste, #00c3ff);
+  box-shadow: 0 0 18px rgba(0,195,255,0.2);
+}
+
+/* === Tabs de categorías === */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0 auto var(--spacing-lg);
+  flex-wrap: wrap;
+}
+.tab-btn {
+  background: rgba(0, 195, 255, 0.12);
+  color: #e9f8ff;
+  border: 1px solid rgba(0, 195, 255, 0.35);
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+  backdrop-filter: blur(8px);
+}
+.tab-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 195, 255, 0.25);
+}
+.tab-btn.active {
+  background: linear-gradient(90deg, rgba(0,195,255,.35), rgba(158,0,255,.35));
+  border-color: rgba(0, 195, 255, 0.7);
+}
+
+/* === Estado vacío === */
+.empty-state {
+  max-width: 900px;
+  margin: 0 auto var(--spacing-xl);
+  text-align: center;
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(0,195,255,.25);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 28px rgba(0, 195, 255, 0.12);
+}
+.empty-state h3 {
+  margin: 0 0 .5rem 0;
+  font-size: 1.6rem;
+  background: linear-gradient(45deg, var(--color-celeste), var(--color-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.empty-state p {
+  color: #cfefff;
+  opacity: .9;
+}
+
+.portfolio {
+  padding: 3rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.portfolio h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(45deg, var(--color-celeste), var(--color-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.carousel img {
+  width: 100%;
+  border-radius: var(--border-radius-lg);
+  object-fit: cover;
+  max-height: 400px;
+}
+
+.links a {
+  color: var(--color-celeste);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.links a:hover {
+  color: var(--color-purple);
+}
+
+/* === Vista de cuadrícula para Web & Software === */
+.web-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.web-project-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 195, 255, 0.1);
+  cursor: pointer;
+  min-height: 320px;
+}
+
+.web-project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 195, 255, 0.2);
+  border-color: rgba(0, 195, 255, 0.3);
+}
+
+.web-project-image-container {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.web-project-image {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(0, 195, 255, 0.1);
+}
+
+.web-project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.web-project-card:hover .web-project-image {
+  transform: scale(1.05);
+}
+
+.web-project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.web-project-card:hover .web-project-overlay {
+  opacity: 1;
+}
+
+.web-project-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.project-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 195, 255, 0.2);
+  border: 1px solid rgba(0, 195, 255, 0.5);
+  border-radius: 50%;
+  color: #e9f8ff;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.project-link:hover {
+  background: rgba(0, 195, 255, 0.4);
+  transform: scale(1.1);
+}
+
+.web-project-info {
+  padding: 1.5rem;
+}
+
+.web-project-info h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.3rem;
+  color: #e9f8ff;
+}
+
+.web-project-info p {
+  margin: 0 0 1rem 0;
+  color: #b0c4de;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.web-project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-tag {
+  background: rgba(0, 195, 255, 0.15);
+  color: #00c3ff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  border: 1px solid rgba(0, 195, 255, 0.3);
+}
+
+.traditional-view {
+  width: 100%;
+}
+
+/* Responsive para tablets */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .web-projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .web-projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
+  
+  .web-project-image {
+    height: 200px;
+  }
+}

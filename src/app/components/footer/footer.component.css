@@ -1,0 +1,362 @@
+/* ===== FOOTER BASE ===== */
+.footer {
+  position: relative;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  color: #fff;
+  padding: 3rem 0 1rem;
+  margin-top: auto;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(0, 195, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(123, 44, 191, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(0, 242, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.footer-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ===== NAVEGACIÓN DEL FOOTER ===== */
+.footer-nav-mobile {
+  display: block;
+}
+
+.footer-nav-desktop {
+  display: none;
+}
+
+.footer-nav-mobile ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.footer-nav-mobile li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.footer-nav-mobile li a:hover {
+  color: #00c3ff;
+  background: rgba(0, 195, 255, 0.2);
+  border-color: #00c3ff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 195, 255, 0.3);
+}
+
+/* ===== SEPARADOR ===== */
+.footer-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  margin: 2rem 0;
+}
+
+/* ===== INFORMACIÓN DEL FOOTER ===== */
+.footer-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.footer-copyright p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  color: #d9e7ee;
+  line-height: 1.5;
+}
+
+.footer-copyright strong {
+  color: #00c3ff;
+  font-weight: 600;
+}
+
+/* ===== BOTÓN DE AGRADECIMIENTOS ===== */
+.acknowledgments-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.acknowledgments-btn:hover {
+  background: rgba(0, 195, 255, 0.2);
+  border-color: #00c3ff;
+  color: #00c3ff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 195, 255, 0.3);
+}
+
+.acknowledgments-btn i {
+  font-size: 1.1rem;
+  color: #ff6b9d;
+}
+
+/* ===== MODAL DE AGRADECIMIENTOS ===== */
+.acknowledgments-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  padding: 1rem;
+}
+
+.acknowledgments-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  transform: scale(0.9) translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.acknowledgments-modal.active .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #00c3ff;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #00c3ff;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.acknowledgment-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.acknowledgment-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(0, 195, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 195, 255, 0.15);
+}
+
+.acknowledgment-image {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(0, 195, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.acknowledgment-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.acknowledgment-item:hover .acknowledgment-image {
+  border-color: #00c3ff;
+  box-shadow: 0 0 20px rgba(0, 195, 255, 0.4);
+}
+
+.acknowledgment-item:hover .acknowledgment-image img {
+  transform: scale(1.05);
+}
+
+.acknowledgment-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.acknowledgment-content h4 {
+  margin: 0 0 0.8rem 0;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.acknowledgment-content p {
+  margin: 0;
+  color: #d9e7ee;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .acknowledgment-item {
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .acknowledgment-image {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .acknowledgment-content h4 {
+    font-size: 1rem;
+  }
+  
+  .acknowledgment-content p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Desktop mejorado */
+@media (min-width: 992px) {
+  .acknowledgment-item {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+  
+  .acknowledgment-image {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .acknowledgment-content h4 {
+    font-size: 1.2rem;
+  }
+  
+  .acknowledgment-content p {
+    font-size: 1rem;
+  }
+}
+
+/* ===== RESPONSIVE ADICIONAL ===== */
+@media (max-width: 768px) {
+  .footer {
+    padding: 2rem 0 1rem;
+  }
+
+  .footer-content {
+    padding: 0 1rem;
+  }
+
+  .footer-nav-mobile ul {
+    gap: 1rem;
+  }
+
+  .footer-nav-mobile li a {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .footer-copyright p {
+    font-size: 0.85rem;
+  }
+
+  .acknowledgments-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .modal-content {
+    margin: 1rem;
+    max-height: 85vh;
+  }
+
+  .modal-header {
+    padding: 1rem;
+  }
+
+  .modal-body {
+    padding: 1rem;
+  }
+
+  .acknowledgment-item {
+    padding: 0.8rem;
+  }
+
+  .acknowledgment-item i {
+    font-size: 1.5rem;
+  }
+}

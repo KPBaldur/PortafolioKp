@@ -1,0 +1,450 @@
+/* ===== CONTACT COMPONENT ===== */
+.contact {
+  padding: var(--spacing-xxl) var(--spacing-lg);
+  background: var(--gradient-cosmic);
+  color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, rgba(0, 195, 255, 0.1) 0%, transparent 70%);
+  z-index: 0;
+}
+
+.contact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== HEADER ===== */
+.contact-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contact-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-sm);
+  background: linear-gradient(45deg, var(--color-celeste), var(--color-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+.contact-description {
+  font-size: 1.1rem;
+  color: #b8b8d1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ===== CONTACT CONTENT ===== */
+.contact-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* ===== FORM SECTION ===== */
+.contact-form-section {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.contact-form-section:hover {
+  border-color: rgba(0, 195, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 195, 255, 0.1);
+}
+
+.contact-form-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #00c3ff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-form-section h3::before {
+  content: '📧';
+  font-size: 1.2rem;
+}
+
+/* ===== FORM STYLES ===== */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-input,
+.form-textarea {
+  padding: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #00c3ff;
+  box-shadow: 0 0 0 3px rgba(0, 195, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-input.error,
+.form-textarea.error {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+}
+
+/* ===== ERROR MESSAGES ===== */
+.error-message {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.error-message::before {
+  content: '⚠️';
+  font-size: 0.8rem;
+}
+
+/* ===== SUBMIT BUTTON ===== */
+.btn-submit {
+  background: linear-gradient(135deg, #00c3ff, #7b2cbf);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 195, 255, 0.3);
+}
+
+.btn-submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-submit.loading {
+  background: linear-gradient(135deg, #666, #888);
+}
+
+/* ===== SUBMIT MESSAGE ===== */
+.submit-message {
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  margin-top: 1rem;
+  animation: slideInUp 0.3s ease;
+}
+
+.submit-message.success {
+  background: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  color: #4caf50;
+}
+
+.submit-message.error {
+  background: rgba(244, 67, 54, 0.1);
+  border: 1px solid rgba(244, 67, 54, 0.3);
+  color: #f44336;
+}
+
+/* ===== SOCIAL SECTION ===== */
+.social-contact-section {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  height: fit-content;
+  transition: all 0.3s ease;
+}
+
+.social-contact-section:hover {
+  border-color: rgba(0, 195, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 195, 255, 0.1);
+}
+
+.social-contact-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #00c3ff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.social-contact-section h3::before {
+  content: '🌐';
+  font-size: 1.2rem;
+}
+
+.social-description {
+  color: #b8b8d1;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* ===== SOCIAL BUTTONS ===== */
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.social-btn:hover::before {
+  left: 100%;
+}
+
+.social-btn i {
+  font-size: 1.5rem;
+  min-width: 24px;
+}
+
+.social-btn.linkedin {
+  background: linear-gradient(135deg, #0077b5, #005885);
+  border-color: rgba(0, 119, 181, 0.3);
+}
+
+.social-btn.linkedin:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 119, 181, 0.3);
+  border-color: #0077b5;
+}
+
+.social-btn.instagram {
+  background: linear-gradient(135deg, #e1306c, #c13584);
+  border-color: rgba(225, 48, 108, 0.3);
+}
+
+.social-btn.instagram:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(225, 48, 108, 0.3);
+  border-color: #e1306c;
+}
+
+.social-btn.whatsapp {
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  border-color: rgba(37, 211, 102, 0.3);
+}
+
+.social-btn.whatsapp:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+  border-color: #25d366;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contact-form-section,
+.social-contact-section {
+  animation: slideInUp 0.6s ease-out;
+}
+
+.contact-form-section {
+  animation-delay: 0.1s;
+}
+
+.social-contact-section {
+  animation-delay: 0.2s;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 992px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .contact {
+    padding: 3rem 1.5rem;
+  }
+  
+  .contact-header h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact {
+    padding: 2rem 1rem;
+  }
+  
+  .contact-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .contact-form-section,
+  .social-contact-section {
+    padding: 1.5rem;
+  }
+  
+  .social-buttons {
+    gap: 0.8rem;
+  }
+  
+  .social-btn {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .social-btn i {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .contact-form-section,
+  .social-contact-section {
+    padding: 1rem;
+  }
+  
+  .form-input,
+  .form-textarea {
+    padding: 0.8rem;
+  }
+  
+  .submit-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  .contact-form-section,
+  .social-contact-section {
+    animation: none;
+  }
+  
+  .social-btn:hover {
+    transform: none;
+  }
+  
+  .submit-btn:hover {
+    transform: none;
+  }
+}
+
+/* ===== FOCUS STYLES ===== */
+.social-btn:focus {
+  outline: 2px solid #00c3ff;
+  outline-offset: 2px;
+}
+
+.submit-btn:focus {
+  outline: 2px solid #00c3ff;
+  outline-offset: 2px;
+}
