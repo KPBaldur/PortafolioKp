@@ -12,10 +12,10 @@ interface Project {
 }
 
 @Component({
-    selector: 'app-portfolio',
-    templateUrl: './portfolio.component.html',
-    styleUrls: ['./portfolio.component.css'],
-    standalone: false
+  selector: 'app-portfolio',
+  templateUrl: './portfolio.component.html',
+  styleUrls: ['./portfolio.component.css'],
+  standalone: false
 })
 export class PortfolioComponent {
   @ViewChild('carouselSection') carouselSection!: ElementRef<HTMLDivElement>;
@@ -26,14 +26,26 @@ export class PortfolioComponent {
 
   // Categorías visibles en tabs
   categories: { id: CategoryId; label: string }[] = [
-    { id: 'web',    label: '🌐 Web & Software' },
-    { id: 'games',  label: '🎮 Videojuegos' },
+    { id: 'web', label: '🌐 Web & Software' },
+    { id: 'games', label: '🎮 Videojuegos' },
     { id: 'models', label: '🧊 Modelado 3D' },
   ];
 
   // Datos de ejemplo (ajusta rutas a /assets/...)
   data: Record<CategoryId, Project[]> = {
     web: [
+      {
+        title: 'Sistema de Monitoreo SGIC - Monitoreo en vivo de sucursales',
+        tech: 'Python – FastAPI – Uvicorn – React – Zustand – TailwindCSS',
+        description:
+          'Sistema de Monitoreo SGIC Plataforma de observabilidad en tiempo real desarrollada para reducir la latencia de detección de fallas a lo largo de todas las sucursales de la cadena.',
+        images: [
+          'assets/img/portfolio/MonitorSGIC/MonitorSGIC_01.PNG',
+          'assets/img/portfolio/MonitorSGIC/MonitorSGIC_02.PNG',
+          'assets/img/portfolio/MonitorSGIC/MonitorSGIC_03.PNG',
+        ],
+        repo: 'https://github.com/KPBaldur/App-monitoreo-y-Ticket',
+      },
       {
         title: 'API Regular Show',
         tech: 'Python – FastAPI – Uvicorn',
@@ -145,8 +157,8 @@ export class PortfolioComponent {
   getImageAnimationClass(): string {
     switch (this.lastDirection) {
       case 'right': return 'carousel-img slide-in-right active';
-      case 'left':  return 'carousel-img slide-in-left active';
-      default:      return 'carousel-img fade active';
+      case 'left': return 'carousel-img slide-in-left active';
+      default: return 'carousel-img fade active';
     }
   }
 
