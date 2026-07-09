@@ -1,226 +1,372 @@
 /* ===== ABOUT COMPONENT ===== */
 .about-me {
-  padding: var(--spacing-xxl) var(--spacing-lg);
-  background: var(--gradient-cosmic);
+  padding: var(--spacing-xxl) 0;
+  background: var(--bg-deep-space);
   color: #fff;
-  text-align: center;
   position: relative;
   overflow: hidden;
+  z-index: 1;
 }
 
-/* Fondo de estrellas - Capa 1 */
+/* Fondo de estrellas integrado */
 .about-me::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 0; left: 0; right: 0; bottom: 0;
   background-image: 
-    radial-gradient(2px 2px at 20px 30px, #eee, transparent),
-    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
-    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
-    radial-gradient(2px 2px at 160px 30px, #ddd, transparent);
+    radial-gradient(1.5px 1.5px at 40px 60px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 120px 140px, rgba(255,255,255,0.5), transparent),
+    radial-gradient(2px 2px at 200px 80px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1.5px 1.5px at 280px 180px, rgba(255,255,255,0.4), transparent);
   background-repeat: repeat;
-  background-size: 200px 100px;
-  animation: twinkle 4s ease-in-out infinite alternate;
-  z-index: 0;
-}
-
-/* Fondo de estrellas - Capa 2 */
-.about-me::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    radial-gradient(1px 1px at 50px 50px, #fff, transparent),
-    radial-gradient(1px 1px at 100px 20px, rgba(255,255,255,0.7), transparent),
-    radial-gradient(1px 1px at 150px 60px, #fff, transparent),
-    radial-gradient(1px 1px at 200px 40px, rgba(255,255,255,0.5), transparent);
-  background-repeat: repeat;
-  background-size: 250px 120px;
-  animation: twinkle 6s ease-in-out infinite alternate-reverse;
-  z-index: 0;
+  background-size: 320px 240px;
+  animation: twinkle 5s ease-in-out infinite alternate;
+  z-index: -2;
 }
 
 @keyframes twinkle {
-  0% { opacity: 0.3; }
-  50% { opacity: 0.8; }
-  100% { opacity: 0.4; }
+  0% { opacity: 0.35; }
+  50% { opacity: 0.75; }
+  100% { opacity: 0.45; }
 }
 
-.about-me h2 {
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 2rem;
-  background: linear-gradient(45deg, #00c3ff, #7b2cbf, #00f2ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position: relative;
-  z-index: 1;
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
 }
 
-.about-me h3 {
-  position: relative;
-  z-index: 1;
-}
-
-.about-me p {
-  font-size: 1.05rem;
-  line-height: 1.6;
-  max-width: 850px;
-  margin: 0 auto 2.5rem auto;
-  color: #e0e0e0;
-  position: relative;
-  z-index: 1;
-}
-
-.about-me img {
-  width: 180px;          /* 👈 tamaño fijo base */
-  height: auto;          /* mantiene proporción */
-  border-radius: 50%;    /* 👈 redondeada estilo avatar */
-  margin: 0 auto 2rem;   /* centra y da margen inferior */
-  display: block;        /* asegura que se centre */
-  object-fit: cover;     /* evita deformación */
-  border: 3px solid #00c3ff; /* opcional: borde decorativo */
-  position: relative;
-  z-index: 1;
-}
-
-/* Grid de skills */
-.skills-grid {
-  display: grid;
-  gap: 2rem;
-  margin: 3rem 0;
-  position: relative;
-  z-index: 1;
-}
-
-.skill-block {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 1.5rem;
-  text-align: center; /* 👈 centra todo el contenido */
-  transition: transform 0.25s ease, border-color 0.25s ease;
-  position: relative;
-  z-index: 1;
-}
-
-.skill-block:hover {
-  transform: translateY(-6px);
-  border-color: #00c3ff;
-}
-
-.skill-block h3 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: #00c3ff;
+/* === LAYOUT GENERAL (2 COLUMNAS) === */
+.about-layout-wrapper {
   display: flex;
-  justify-content: center; /* 👈 centra ícono + texto */
+  flex-direction: column;
   align-items: center;
-  gap: .5rem;
+  text-align: center;
+  gap: 2rem;
+  margin-top: var(--spacing-xl);
 }
 
-.skill-block i {
-  font-size: 1.4rem;
-  color: #00c3ff;
+/* Columna Izquierda: Foto y Redes */
+.about-left-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
 }
 
-.skill-block ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto 1rem auto; /* centra y da margen inferior */
-  text-align: center; /* 👈 centra texto de la lista */
+.avatar-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(135deg, var(--color-software), var(--color-gamedev), var(--color-art));
+  box-shadow: 0 0 25px rgba(59, 130, 246, 0.25);
+  transition: transform var(--transition-normal);
 }
 
-.skill-block li {
-  margin: 0.4rem 0;
-  font-size: 0.95rem;
-  color: #ccc;
+.avatar-container:hover {
+  transform: scale(1.03) rotate(2deg);
 }
 
-.skill-block .skill-desc {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #e0e0e0;
-  margin-top: 0.5rem;
+.profile-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--bg-deep-space);
 }
 
-.highlights {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #9be8ff;
-  margin-bottom: 2.5rem;
-}
-
-/* Redes sociales */
+/* Redes Sociales */
 .social-links {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
-  margin-top: 1rem;
+  gap: 1rem;
 }
 
 .social-links a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  font-size: 1.8rem;
-  color: #fff;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 1.5rem;
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
 }
 
 .social-links a:hover {
-  color: #00c3ff;
-  background: rgba(0, 195, 255, 0.2);
-  border-color: #00c3ff;
-  transform: translateY(-5px) scale(1.1);
-  box-shadow: 0 10px 25px rgba(0, 195, 255, 0.3);
+  color: #fff;
+  background: rgba(59, 130, 246, 0.15);
+  border-color: var(--color-software);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow-software);
 }
 
-.social-links .custom-icon {
-  width: 26px;
-  height: 26px;
-  fill: #fff;
-  transition: all 0.3s ease;
+/* Columna Derecha: Texto e Info */
+.about-right-col {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.social-links a:hover .custom-icon {
-  fill: #00c3ff;
-  transform: scale(1.1);
+.profile-name {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.5px;
 }
 
-/* Responsive */
+.profile-role {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-software);
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.4;
+}
+
+.profile-short-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-md);
+  max-width: 750px;
+}
+
+/* === FILA DE BADGES / CHIPS === */
+.profile-badges-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: var(--spacing-lg);
+  width: 100%;
+}
+
+.badge-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: var(--border-radius-full);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.badge-chip i {
+  font-size: 0.95rem;
+  color: var(--color-software);
+}
+
+.badge-chip:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.green {
+  background-color: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
+}
+
+/* Botón Conoce Más */
+.btn-toggle-more {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(59, 130, 246, 0.08);
+  color: var(--color-software);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  padding: 10px 22px;
+  border-radius: var(--border-radius-sm);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-toggle-more:hover {
+  background: var(--color-software);
+  color: #fff;
+  box-shadow: var(--shadow-glow-software);
+  transform: translateY(-2px);
+}
+
+/* === CONTENIDO EXTENDIDO CON ANIMACIÓN === */
+.about-expanded-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  width: 100%;
+}
+
+.about-expanded-content.expanded {
+  grid-template-rows: 1fr;
+}
+
+.expanded-inner {
+  min-height: 0;
+  padding-top: var(--spacing-xl);
+}
+
+/* Grid de especialización (3 columnas) */
+.specialization-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: var(--spacing-xl);
+}
+
+.spec-card {
+  padding: var(--spacing-md);
+  background: rgba(255, 255, 255, 0.01);
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: all var(--transition-normal);
+}
+
+/* Bordes y hovers por especialidad */
+.spec-card.border-software {
+  border-color: rgba(59, 130, 246, 0.12);
+}
+.spec-card.border-software:hover {
+  border-color: var(--color-software);
+  background: rgba(59, 130, 246, 0.02);
+  box-shadow: var(--shadow-glow-software);
+  transform: translateY(-4px);
+}
+
+.spec-card.border-gamedev {
+  border-color: rgba(168, 85, 247, 0.12);
+}
+.spec-card.border-gamedev:hover {
+  border-color: var(--color-gamedev);
+  background: rgba(168, 85, 247, 0.02);
+  box-shadow: var(--shadow-glow-gamedev);
+  transform: translateY(-4px);
+}
+
+.spec-card.border-art {
+  border-color: rgba(45, 212, 191, 0.12);
+}
+.spec-card.border-art:hover {
+  border-color: var(--color-art);
+  background: rgba(45, 212, 191, 0.02);
+  box-shadow: var(--shadow-glow-art);
+  transform: translateY(-4px);
+}
+
+.spec-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spec-title i {
+  font-size: 1.35rem;
+}
+
+/* Colores de acento */
+.software-text { color: var(--color-software); }
+.gamedev-text { color: var(--color-gamedev); }
+.art-text { color: var(--color-art); }
+
+.spec-desc {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+}
+
+/* Filosofía / Lema personal */
+.personal-philosophy {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: var(--spacing-xl);
+  max-width: 850px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.philosophy-intro {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Tratamiento visual de cita premium */
+.philosophy-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #fff;
+  border-left: 3px solid var(--color-software);
+  padding-left: var(--spacing-md);
+  margin: var(--spacing-lg) 0;
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.03) 0%, transparent 100%);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.philosophy-story {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+/* === RESPONSIVE (DESKTOP E INTERMEDIOS) === */
 @media (min-width: 768px) {
-  .about-me img {
-    width: 220px;
-  }
-
-  .skills-grid {
+  .specialization-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (min-width: 1200px) {
-  .about-me img {
-    width: 260px;
+@media (min-width: 992px) {
+  .about-layout-wrapper {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: 3rem;
   }
   
-  .skills-grid {
-    grid-template-columns: repeat(4, 1fr);
+  .about-left-col {
+    width: 250px;
+    flex-shrink: 0;
+  }
+
+  .about-right-col {
+    align-items: flex-start;
+    flex-grow: 1;
+  }
+
+  .profile-badges-row {
+    justify-content: flex-start;
+  }
+
+  .specialization-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

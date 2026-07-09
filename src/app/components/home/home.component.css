@@ -66,6 +66,18 @@
   transition: background .2s;
 }
 .btn:hover { background: #009fcc; }
+.btn-ue5 {
+  background: #7b2cbf;
+  color: #fff;
+  padding: .8rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background .2s;
+}
+.btn-ue5:hover {
+  background: #6220a2;
+}
 .btn-outline {
   border: 2px solid #00c3ff;
   color: #00c3ff;
@@ -86,7 +98,7 @@
     align-items: center;
   }
 
-  .btn, .btn-outline {
+  .btn, .btn-outline, .btn-ue5 {
     width: 90%;                /* ocupan casi todo el ancho */
     max-width: 320px;          /* ancho máximo */
     font-size: 1.05rem;

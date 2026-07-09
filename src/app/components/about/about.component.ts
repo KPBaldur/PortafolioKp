@@ -7,5 +7,10 @@ import { Component } from '@angular/core';
     standalone: false
 })
 export class AboutComponent {
+  isExpanded = false;
+  availabilityStatus = 'Disponible para proyectos';
 
+  toggleExpand(): void {
+    this.isExpanded = !this.isExpanded;
+  }
 }
