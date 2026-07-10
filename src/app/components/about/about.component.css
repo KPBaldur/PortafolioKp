@@ -87,6 +87,41 @@
   .hex-node { animation: none; opacity: 0.5; }
 }
 
+/* Animación del Título "Sobre Mí" */
+.about-me .section-header {
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+}
+
+.about-me .section-header h2 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  display: inline-block;
+  background: linear-gradient(
+    45deg,
+    #3B82F6, /* Azul */
+    #00C3FF, /* Celeste */
+    #A855F7, /* Morado */
+    #E100FF, /* Rosa */
+    #3B82F6  /* Cierre de ciclo */
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: titleGradient 6s linear infinite;
+}
+
+@keyframes titleGradient {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 300% center;
+  }
+}
+
 .about-container {
   max-width: 1200px;
   margin: 0 auto;

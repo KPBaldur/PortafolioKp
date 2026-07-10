@@ -34,11 +34,21 @@
 .contact-header h2 {
   font-size: 2.5rem;
   margin-bottom: var(--spacing-sm);
-  background: linear-gradient(45deg, var(--color-celeste), var(--color-purple));
+  display: inline-block;
+  background: linear-gradient(
+    45deg,
+    #3B82F6, /* Azul */
+    #00C3FF, /* Celeste */
+    #A855F7, /* Morado */
+    #E100FF, /* Rosa */
+    #3B82F6  /* Cierre de ciclo */
+  );
+  background-size: 300% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 700;
+  animation: titleGradient 6s linear infinite;
 }
 
 .contact-description {

@@ -233,6 +233,15 @@ p {
   }
 }
 
+@keyframes titleGradient {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 300% center;
+  }
+}
+
 .animate-fade-in {
   animation: fadeInUp 0.6s ease-out;
 }
