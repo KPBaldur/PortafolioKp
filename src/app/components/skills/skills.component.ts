@@ -10,7 +10,8 @@ export class SkillsComponent {
   
   skills = {
     frontend: {
-      title: 'Frontend Development',
+      key: 'frontend',
+      title: 'Frontend & UI',
       icon: 'bx-code-alt',
       technologies: [
         { name: 'HTML5', level: 'Avanzado', icon: 'bx bxl-html5' },
@@ -22,7 +23,8 @@ export class SkillsComponent {
       ]
     },
     backend: {
-      title: 'Backend Development',
+      key: 'backend',
+      title: 'Backend & APIs',
       icon: 'bx-server',
       technologies: [
         { name: 'Python', level: 'Intermedio', icon: 'bx bxl-python' },
@@ -34,6 +36,7 @@ export class SkillsComponent {
       ]
     },
     database: {
+      key: 'database',
       title: 'Bases de Datos',
       icon: 'bx-data',
       technologies: [
@@ -42,7 +45,8 @@ export class SkillsComponent {
       ]
     },
     gameDev: {
-      title: 'Game Development',
+      key: 'gamedev',
+      title: 'Desarrollo de Videojuegos',
       icon: 'bx-game',
       technologies: [
         { name: 'Unreal Engine 5', level: 'Avanzado', icon: 'bx bxs-invader' },
@@ -51,7 +55,8 @@ export class SkillsComponent {
       ]
     },
     adobe: {
-      title: 'Adobe Creative Suite',
+      key: 'design',
+      title: 'Diseño & Arte Digital',
       icon: 'bx bxl-adobe',
       technologies: [
         { name: 'Photoshop', level: 'Avanzado', icon: 'bx bxl-adobe' },
@@ -61,6 +66,7 @@ export class SkillsComponent {
       ]
     },
     tools: {
+      key: 'tools',
       title: 'Herramientas & Control de Versiones',
       icon: 'bx-cog',
       technologies: [
@@ -70,17 +76,4 @@ export class SkillsComponent {
       ]
     }
   };
-
-  getLevelClass(level: string): string {
-    switch (level) {
-      case 'Avanzado':
-        return 'level-advanced';
-      case 'Intermedio':
-        return 'level-intermediate';
-      case 'Básico':
-        return 'level-basic';
-      default:
-        return 'level-basic';
-    }
-  }
 }

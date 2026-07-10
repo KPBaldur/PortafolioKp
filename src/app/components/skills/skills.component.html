@@ -10,7 +10,7 @@
     <div class="skills-grid">
       <!-- Frontend Development -->
       <article class="skill-category" *ngFor="let category of [skills.frontend, skills.backend, skills.database, skills.gameDev, skills.adobe, skills.tools]">
-        <div class="skill-card">
+        <div class="skill-card" [ngClass]="'cat-' + category.key">
           <div class="skill-header">
             <i [class]="'bx ' + category.icon" class="skill-icon"></i>
             <h3>{{ category.title }}</h3>
@@ -21,11 +21,6 @@
               <div class="skill-info">
                 <i [class]="tech.icon" class="tech-icon" [attr.alt]="'Logo de ' + tech.name"></i>
                 <span class="tech-name">{{ tech.name }}</span>
-              </div>
-              <div class="skill-level">
-                <span class="level-badge" [ngClass]="getLevelClass(tech.level)">
-                  {{ tech.level }}
-                </span>
               </div>
             </li>
           </ul>
