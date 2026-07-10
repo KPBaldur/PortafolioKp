@@ -75,7 +75,7 @@ export class SkillsComponent {
       icon: 'bx-game',
       description: 'Especialización en la creación de experiencias interactivas y lógicas de juego utilizando Unreal Engine 5. Sólido manejo de programación visual con Blueprints y scripting avanzado en C++. Actualmente en proceso de expansión de habilidades en arte técnico, siguiendo un roadmap estructurado para la integración y modelado 3D con Blender.',
       technologies: [
-        { name: 'Unreal Engine 5', color: '#313131', icon: 'bx bxs-invader', frameworks: ['Blueprints', 'C++'] },
+        { name: 'Unreal Engine 5', color: '#DFE3E6', icon: 'bx bxs-invader', frameworks: ['Blueprints', 'C++'] },
         { name: 'Blender 3D', color: '#E87D0D', icon: 'bx bxl-blender', frameworks: [] }
       ]
     },

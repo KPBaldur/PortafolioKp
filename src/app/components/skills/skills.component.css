@@ -164,19 +164,28 @@
 .skill-card { width: 100%; display: flex; flex-direction: column; }
 
 /* ===== SKILL CARDS ===== */
-.skill-card.cat-frontend,
-.skill-card.cat-backend,
-.skill-card.cat-database,
-.skill-card.cat-tools {
-  --category-color: var(--color-software);
+.cat-backend .skill-card {
+  --category-color: #3B82F6; /* Azul */
 }
 
-.skill-card.cat-gamedev {
-  --category-color: var(--color-gamedev);
+.cat-database .skill-card {
+  --category-color: #A855F7; /* Púrpura */
 }
 
-.skill-card.cat-design {
-  --category-color: var(--color-art);
+.cat-frontend .skill-card {
+  --category-color: #10B981; /* Verde */
+}
+
+.cat-gamedev .skill-card {
+  --category-color: #F97316; /* Naranja */
+}
+
+.cat-tools .skill-card {
+  --category-color: #14B8A6; /* Verde agua */
+}
+
+.cat-design .skill-card {
+  --category-color: #EF4444; /* Rojo */
 }
 
 .skill-card {
@@ -185,7 +194,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 2rem;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
@@ -204,8 +213,10 @@
 
 .skill-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px color-mix(in srgb, var(--category-color) 25%, transparent);
   border-color: var(--category-color);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.6), 
+    0 0 35px color-mix(in srgb, var(--category-color) 45%, transparent);
 }
 
 .skill-card:hover::before {
