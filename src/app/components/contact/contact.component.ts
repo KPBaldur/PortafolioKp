@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import emailjs from '@emailjs/browser';
 import { environment } from '../../../environments/environment';
 
+declare var grecaptcha: any;
+
 @Component({
     selector: 'app-contact',
     templateUrl: './contact.component.html',
@@ -14,6 +16,7 @@ export class ContactComponent implements OnInit {
   isSubmitting = false;
   submitMessage = '';
   showMessage = false;
+  recaptchaSiteKey = environment.recaptcha?.siteKey || '';
 
   // Enlaces de redes sociales
   socialLinks = {
@@ -45,18 +48,56 @@ export class ContactComponent implements OnInit {
   // Método para enviar email usando EmailJS
   async sendEmail(): Promise<void> {
     if (this.contactForm.valid && !this.isSubmitting) {
+      // Cooldown de 60 segundos para evitar spam local
+      const lastSent = localStorage.getItem('last_email_sent');
+      const now = Date.now();
+      const cooldown = 60000; // 60 segundos
+
+      if (lastSent && now - parseInt(lastSent, 10) < cooldown) {
+        const remaining = Math.ceil((cooldown - (now - parseInt(lastSent, 10))) / 1000);
+        this.submitMessage = `Por favor, espera ${remaining} segundos antes de enviar otro mensaje.`;
+        this.showMessage = true;
+        setTimeout(() => {
+          this.submitMessage = '';
+          this.showMessage = false;
+        }, 5000);
+        return;
+      }
+
       this.isSubmitting = true;
       this.submitMessage = '';
 
+      let recaptchaToken = '';
+      if (this.recaptchaSiteKey) {
+        try {
+          if (typeof grecaptcha !== 'undefined') {
+            recaptchaToken = grecaptcha.getResponse();
+          }
+        } catch (e) {
+          console.error('Error al obtener respuesta de reCAPTCHA:', e);
+        }
+
+        if (!recaptchaToken) {
+          this.submitMessage = 'Por favor, completa la verificación de reCAPTCHA.';
+          this.showMessage = true;
+          this.isSubmitting = false;
+          return;
+        }
+      }
+
       try {
         // Preparar los parámetros del template
-        const templateParams = {
+        const templateParams: Record<string, any> = {
           from_name: this.contactForm.get('name')?.value,
           from_email: this.contactForm.get('email')?.value,
           subject: this.contactForm.get('subject')?.value,
           message: this.contactForm.get('message')?.value,
           to_name: 'Kevin Pizarro', // Reemplaza con tu nombre
         };
+
+        if (recaptchaToken) {
+          templateParams['g-recaptcha-response'] = recaptchaToken;
+        }
 
         // Enviar email usando EmailJS
         const response = await emailjs.send(
@@ -68,6 +109,14 @@ export class ContactComponent implements OnInit {
         console.log('Email enviado exitosamente:', response);
         this.submitMessage = '¡Mensaje enviado exitosamente! Te contactaré pronto.';
         this.contactForm.reset();
+        
+        // Reiniciar el widget de reCAPTCHA
+        if (recaptchaToken && typeof grecaptcha !== 'undefined') {
+          grecaptcha.reset();
+        }
+
+        // Registrar marca de tiempo del último envío exitoso
+        localStorage.setItem('last_email_sent', Date.now().toString());
         
       } catch (error) {
         console.error('Error al enviar email:', error);

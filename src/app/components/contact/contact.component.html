@@ -50,6 +50,11 @@
             </div>
           </div>
 
+          <!-- Google reCAPTCHA Widget -->
+          <div *ngIf="recaptchaSiteKey" class="form-group recaptcha-container">
+            <div class="g-recaptcha" [attr.data-sitekey]="recaptchaSiteKey" data-theme="dark"></div>
+          </div>
+
           <button type="submit" class="btn-submit" [disabled]="isSubmitting">
             <span *ngIf="!isSubmitting">Enviar Mensaje</span>
             <span *ngIf="isSubmitting">Enviando...</span>

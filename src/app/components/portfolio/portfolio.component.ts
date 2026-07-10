@@ -188,7 +188,7 @@ export class PortfolioComponent {
   /** Abrir demo del proyecto */
   openProjectDemo(project: Project) {
     if (project.demo) {
-      window.open(project.demo, '_blank');
+      window.open(project.demo, '_blank', 'noopener,noreferrer');
     }
   }
 }

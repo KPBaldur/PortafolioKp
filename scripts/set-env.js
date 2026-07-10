@@ -28,6 +28,9 @@ const envConfigFile = `export const environment = {
     publicKey: '${process.env.EMAILJS_PUBLIC_KEY || ""}',
     serviceId: '${process.env.EMAILJS_SERVICE_ID || ""}',
     templateId: '${process.env.EMAILJS_TEMPLATE_ID || ""}'
+  },
+  recaptcha: {
+    siteKey: '${process.env.RECAPTCHA_SITE_KEY || ""}'
   }
 };
 `;

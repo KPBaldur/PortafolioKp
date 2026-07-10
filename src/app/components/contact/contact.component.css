@@ -168,6 +168,13 @@
   font-size: 0.8rem;
 }
 
+/* ===== RECAPTCHA CONTAINER ===== */
+.recaptcha-container {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: flex-start;
+}
+
 /* ===== SUBMIT BUTTON ===== */
 .btn-submit {
   background: linear-gradient(135deg, #00c3ff, #7b2cbf);
