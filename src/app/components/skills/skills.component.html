@@ -20,19 +20,29 @@
     </header>
 
     <div class="skills-grid">
-      <!-- Frontend Development -->
-      <article class="skill-category" *ngFor="let category of [skills.frontend, skills.backend, skills.database, skills.gameDev, skills.adobe, skills.tools]">
-        <div class="skill-card" [ngClass]="'cat-' + category.key">
+      <article class="skill-category" 
+               *ngFor="let category of [skills.backend, skills.database, skills.frontend, skills.gameDev, skills.tools, skills.adobe]"
+               [ngClass]="'cat-' + category.key">
+        <div class="skill-card">
           <div class="skill-header">
             <i [class]="'bx ' + category.icon" class="skill-icon"></i>
             <h3>{{ category.title }}</h3>
           </div>
           
+          <p class="skill-description">{{ category.description }}</p>
+          
           <ul class="skill-list">
-            <li *ngFor="let tech of category.technologies" class="skill-item">
+            <li *ngFor="let tech of category.technologies" 
+                class="skill-item" 
+                [style.--tech-color]="tech.color">
               <div class="skill-info">
                 <i [class]="tech.icon" class="tech-icon" [attr.alt]="'Logo de ' + tech.name"></i>
-                <span class="tech-name">{{ tech.name }}</span>
+                <div class="tech-details">
+                  <span class="tech-name">{{ tech.name }}</span>
+                  <div class="tech-frameworks" *ngIf="tech.frameworks && tech.frameworks.length > 0">
+                    <span *ngFor="let fw of tech.frameworks" class="fw-badge">{{ fw }}</span>
+                  </div>
+                </div>
               </div>
             </li>
           </ul>
