@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 
-type CategoryId = 'web' | 'games' | 'models';
+type CategoryId = 'web' | 'games';
 
 interface Project {
   title: string;
@@ -28,7 +28,6 @@ export class PortfolioComponent {
   categories: { id: CategoryId; label: string }[] = [
     { id: 'web', label: '🌐 Web & Software' },
     { id: 'games', label: '🎮 Videojuegos' },
-    { id: 'models', label: '🧊 Modelado 3D' },
   ];
 
   // Datos de ejemplo (ajusta rutas a /assets/...)
@@ -93,17 +92,7 @@ export class PortfolioComponent {
       //   description: 'Top-down 2D/3D con 7 enemigos y jefe.',
       //   images: ['assets/portfolio/elena/elena1.jpg', 'assets/portfolio/elena/elena2.jpg'],
       //   demo: '#'
-      // }
-    ],
-    models: [
-      // vacío por ahora
-      // {
-      //   title: 'Armored Mecha',
-      //   tech: 'Blender – Substance Painter',
-      //   description: 'Hard-surface con materiales metálicos PBR.',
-      //   images: ['assets/portfolio/mecha/mecha1.jpg', 'assets/portfolio/mecha/mecha2.jpg']
-      // }
-    ],
+    ]
   };
 
   // Estado UI
