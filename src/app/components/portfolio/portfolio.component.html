@@ -29,10 +29,18 @@
       <div
         *ngFor="let project of projects"
         class="web-project-card"
+        [class.featured]="project.featured"
         (click)="openModal(project)"
       >
         <div class="web-project-image-container">
-          <img [src]="project.images[0]" [alt]="project.title" class="web-project-image" />
+          <span *ngIf="project.badge" class="project-badge">{{ project.badge }}</span>
+          <img *ngIf="project.images && project.images.length > 0; else fallbackImg" [src]="project.images[0]" [alt]="project.title" class="web-project-image" />
+          <ng-template #fallbackImg>
+            <div class="web-project-image-fallback">
+              <i class="bx bx-package fallback-icon"></i>
+              <span class="fallback-text">Vista previa pendiente</span>
+            </div>
+          </ng-template>
           <div class="web-project-overlay">
             <div class="web-project-links">
               <a *ngIf="project.repo" [href]="project.repo" target="_blank" rel="noopener noreferrer" class="project-link">
@@ -47,6 +55,9 @@
         <div class="web-project-info">
           <h3>{{ project.title }}</h3>
           <p>{{ project.description }}</p>
+          <ul *ngIf="project.highlights?.length" class="project-highlights">
+            <li *ngFor="let point of project.highlights">{{ point }}</li>
+          </ul>
           <div class="web-project-tech">
             <span *ngFor="let tech of project.tech.split(' – ')" class="tech-tag">{{ tech }}</span>
           </div>

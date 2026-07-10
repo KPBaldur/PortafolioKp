@@ -9,6 +9,9 @@ interface Project {
   images: string[];            // rutas en /assets/...
   repo?: string;
   demo?: string;
+  featured?: boolean;
+  badge?: string;
+  highlights?: string[];
 }
 
 @Component({
@@ -44,6 +47,27 @@ export class PortfolioComponent {
           'assets/img/portfolio/MonitorSGIC/MonitorSGIC_03.PNG',
         ],
         repo: 'https://github.com/KPBaldur/App-monitoreo-y-Ticket',
+        featured: true,
+        badge: 'Proyecto Empresarial',
+        highlights: [
+          'Monitoreo en tiempo real con procesos concurrentes (threading)',
+          'Automatización de tickets vía Microsoft Graph API',
+          'Gestión de accesos mediante Azure Active Directory'
+        ]
+      },
+      {
+        title: 'Sistema Integrado de Etiquetado (SIE)',
+        tech: 'C# – .NET 8 – WPF – ZPL II – Odoo API – ClosedXML – GitHub Actions – Velopack',
+        description: 'Aplicación de escritorio nativa que automatiza el etiquetado de precios y bodega, integrando impresión térmica industrial con el ERP Odoo.',
+        images: [],
+        featured: true,
+        badge: 'Proyecto Empresarial',
+        highlights: [
+          'Integración en tiempo real con Odoo ERP vía JSON-RPC',
+          'Comunicación nativa RAW/ZPL II con impresoras Zebra',
+          'Carga masiva de datos desde Excel (ClosedXML)',
+          'CI/CD automatizado con GitHub Actions y actualización silenciosa (Velopack)'
+        ]
       },
       {
         title: 'API Regular Show',
