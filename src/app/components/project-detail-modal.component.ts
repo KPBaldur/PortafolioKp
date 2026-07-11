@@ -1,14 +1,5 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
-
-// Project interface matching the one in PortfolioComponent
-interface Project {
-  title: string;
-  tech: string;
-  description: string;
-  images: string[];
-  repo?: string;
-  demo?: string;
-}
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
+import { Project } from '../services/projects.service';
 
 @Component({
     selector: 'app-project-detail-modal',
@@ -16,7 +7,7 @@ interface Project {
     styleUrls: ['./project-detail-modal.component.css'],
     standalone: false
 })
-export class ProjectDetailModalComponent implements OnInit, OnDestroy {
+export class ProjectDetailModalComponent implements OnInit, OnDestroy, OnChanges {
   @Input() isOpen: boolean = false;
   @Input() project: Project | null = null;
   @Output() close = new EventEmitter<void>();
@@ -33,9 +24,17 @@ export class ProjectDetailModalComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     document.removeEventListener('keydown', this.handleKeyDown.bind(this));
+    document.body.classList.remove('modal-open');
   }
 
-  ngOnChanges(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['isOpen']) {
+      if (this.isOpen) {
+        document.body.classList.add('modal-open');
+      } else {
+        document.body.classList.remove('modal-open');
+      }
+    }
     if (this.isOpen && this.project && this.project.images.length > 0) {
       this.currentImageIndex = 0;
       this.currentImage = this.project.images[0];

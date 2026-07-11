@@ -1,0 +1,90 @@
+<div class="case-study-container" *ngIf="project">
+  <!-- HEADER -->
+  <header class="case-study-header">
+    <a [routerLink]="['/']" fragment="portfolio" class="back-link">
+      <i class="bx bx-arrow-back"></i> Volver al portafolio
+    </a>
+    
+    <div class="header-main-content">
+      <span *ngIf="project.badge" class="project-badge">{{ project.badge }}</span>
+      <h1 class="project-title">{{ project.title }}</h1>
+      <p class="project-description">{{ project.description }}</p>
+      
+      <!-- Tech Stack -->
+      <div class="tech-stack-container">
+        <span *ngFor="let tech of project.tech.split(' – ')" class="tech-tag">{{ tech }}</span>
+      </div>
+
+      <!-- Action buttons / Confidentiality Notice -->
+      <div class="action-buttons-container">
+        <ng-container *ngIf="project.repo || project.demo; else confidential">
+          <a *ngIf="project.repo" [href]="project.repo" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <i class="bx bxl-github"></i> Ver Repositorio
+          </a>
+          <a *ngIf="project.demo" [href]="project.demo" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <i class="bx bx-link-external"></i> Ver Proyecto
+          </a>
+        </ng-container>
+        <ng-template #confidential>
+          <div class="confidentiality-notice">
+            <i class="bx bx-lock-alt"></i>
+            <span>🔒 Proyecto empresarial — código no divulgable por confidencialidad</span>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECCIÓN: El Desafío -->
+  <section class="case-study-section" *ngIf="project.challenge">
+    <h2>El Desafío</h2>
+    <p class="challenge-text">{{ project.challenge }}</p>
+  </section>
+
+  <!-- SECCIÓN: Demo del Flujo -->
+  <section class="case-study-section">
+    <h2>Cómo Funciona</h2>
+    
+    <div class="video-container" *ngIf="project.videoUrl; else noVideo">
+      <video controls loop [poster]="project.images && project.images.length > 0 ? project.images[0] : ''">
+        <source [src]="project.videoUrl" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    
+    <ng-template #noVideo>
+      <div class="video-placeholder-container">
+        <div *ngIf="project.images && project.images.length > 0" class="fallback-image-wrapper">
+          <img [src]="project.images[0]" [alt]="project.title" class="fallback-static-img">
+        </div>
+        <p class="video-placeholder-text">Video de demo próximamente</p>
+      </div>
+    </ng-template>
+  </section>
+
+  <!-- SECCIÓN: Arquitectura -->
+  <section class="case-study-section" *ngIf="project.architectureImage || project.architectureNote">
+    <h2>Arquitectura</h2>
+    <div class="architecture-container">
+      <div class="architecture-image-container" *ngIf="project.architectureImage">
+        <img [src]="project.architectureImage" [alt]="'Diagrama de arquitectura de ' + project.title" class="architecture-img">
+      </div>
+      <p *ngIf="project.architectureNote" class="architecture-note">{{ project.architectureNote }}</p>
+    </div>
+  </section>
+
+  <!-- SECCIÓN: Logros Técnicos -->
+  <section class="case-study-section" *ngIf="project.highlights && project.highlights.length > 0">
+    <h2>Logros Técnicos</h2>
+    <ul class="project-highlights">
+      <li *ngFor="let point of project.highlights">{{ point }}</li>
+    </ul>
+  </section>
+
+  <!-- FOOTER DE NAVEGACIÓN -->
+  <footer class="case-study-footer" *ngIf="nextProject">
+    <a [routerLink]="['/portafolio', nextProject.slug]" class="next-project-link">
+      Siguiente proyecto: {{ nextProject.title }} <i class="bx bx-right-arrow-alt"></i>
+    </a>
+  </footer>
+</div>

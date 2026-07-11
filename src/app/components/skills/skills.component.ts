@@ -25,13 +25,13 @@ interface SkillsContainer {
 }
 
 @Component({
-    selector: 'app-skills',
-    templateUrl: './skills.component.html',
-    styleUrls: ['./skills.component.css'],
-    standalone: false
+  selector: 'app-skills',
+  templateUrl: './skills.component.html',
+  styleUrls: ['./skills.component.css'],
+  standalone: false
 })
 export class SkillsComponent {
-  
+
   skills: SkillsContainer = {
     backend: {
       key: 'backend',
@@ -86,7 +86,7 @@ export class SkillsComponent {
       description: 'Dominio avanzado en sistemas de control de versiones, flujos de trabajo colaborativos (Git/GitHub) y gestión de despliegues. Experiencia en el mantenimiento, actualización y orquestación de entornos de desarrollo para asegurar un ciclo de vida del software eficiente, ordenado y sin interrupciones.',
       technologies: [
         { name: 'Git & GitHub', color: '#F05032', icon: 'bx bxl-github', frameworks: [] },
-        { name: 'Figma', color: '#F24E1E', icon: 'bx bxl-figma', frameworks: [] }
+        { name: 'Docker', color: '#2496ED', icon: 'bx bxl-docker', frameworks: [] }
       ]
     },
     adobe: {
@@ -95,7 +95,8 @@ export class SkillsComponent {
       icon: 'bx bxl-adobe',
       description: 'Conocimientos sólidos en la suite de Adobe y Figma para la conceptualización visual. Capacidad para diseñar wireframes, maquetar mockups de alta fidelidad y prototipar experiencias de usuario (UI/UX) previas a la fase de desarrollo, asegurando la alineación visual con los requerimientos del producto.',
       technologies: [
-        { name: 'Adobe Suite', color: '#FF0000', icon: 'bx bxl-adobe', frameworks: ['Photoshop', 'Illustrator', 'After Effects', 'Adobe XD'] }
+        { name: 'Adobe Suite', color: '#FF0000', icon: 'bx bxl-adobe', frameworks: ['Photoshop', 'Illustrator', 'After Effects', 'Adobe XD'] },
+        { name: 'Figma', color: '#F24E1E', icon: 'bx bxl-figma', frameworks: [] }
       ]
     }
   };

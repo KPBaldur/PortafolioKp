@@ -26,9 +26,23 @@
 
     <!-- Project content -->
     <div class="project-content">
+      <span *ngIf="project.isClientProject" class="project-modal-badge client-badge">Proyecto para Cliente</span>
+      <span *ngIf="!project.isClientProject && project.badge" class="project-modal-badge default-badge">{{ project.badge }}</span>
+      
       <h2 class="project-title">{{ project.title }}</h2>
+      
+      <div *ngIf="project.isClientProject && project.clientRole" class="client-role">
+        <i class="bx bx-briefcase-alt-2"></i>
+        <span>{{ project.clientRole }}</span>
+      </div>
+
       <h4 class="project-tech">{{ project.tech }}</h4>
       <p class="project-description">{{ project.description }}</p>
+      
+      <div *ngIf="project.isClientProject && project.businessResult" class="business-result">
+        <i class="bx bx-trending-up"></i>
+        <span>{{ project.businessResult }}</span>
+      </div>
       
       <!-- Action buttons -->
       <div class="project-links">

@@ -30,7 +30,8 @@
         *ngFor="let project of projects"
         class="web-project-card"
         [class.featured]="project.featured"
-        (click)="openModal(project)"
+        (click)="project.featured && project.slug ? null : openModal(project)"
+        [routerLink]="project.featured && project.slug ? ['/portafolio', project.slug] : null"
       >
         <div class="web-project-image-container">
           <span *ngIf="project.badge" class="project-badge">{{ project.badge }}</span>
@@ -43,10 +44,10 @@
           </ng-template>
           <div class="web-project-overlay">
             <div class="web-project-links">
-              <a *ngIf="project.repo" [href]="project.repo" target="_blank" rel="noopener noreferrer" class="project-link">
+              <a *ngIf="project.repo" [href]="project.repo" target="_blank" rel="noopener noreferrer" class="project-link" (click)="$event.stopPropagation()">
                 <i class="bx bxl-github"></i>
               </a>
-              <a *ngIf="project.demo" [href]="project.demo" target="_blank" rel="noopener noreferrer" class="project-link">
+              <a *ngIf="project.demo" [href]="project.demo" target="_blank" rel="noopener noreferrer" class="project-link" (click)="$event.stopPropagation()">
                 <i class="bx bx-link-external"></i>
               </a>
             </div>

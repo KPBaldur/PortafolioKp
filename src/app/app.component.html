@@ -1,8 +1,10 @@
-<app-navbar></app-navbar>
-<app-home></app-home>
-<app-about></app-about>
-<app-portfolio></app-portfolio>
-<app-skills></app-skills>
-<app-contact></app-contact>
-<app-footer></app-footer>
+<ng-container *ngIf="!isCaseStudyActive">
+  <app-navbar></app-navbar>
+  <app-home></app-home>
+  <app-about></app-about>
+  <app-portfolio></app-portfolio>
+  <app-skills></app-skills>
+  <app-contact></app-contact>
+  <app-footer></app-footer>
+</ng-container>
 <router-outlet></router-outlet>
