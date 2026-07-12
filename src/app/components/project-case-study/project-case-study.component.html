@@ -38,7 +38,7 @@
   <!-- SECCIÓN: El Desafío -->
   <section class="case-study-section" *ngIf="project.challenge">
     <h2>El Desafío</h2>
-    <p class="challenge-text">{{ project.challenge }}</p>
+    <p *ngFor="let paragraph of challengeParagraphs" class="challenge-text">{{ paragraph }}</p>
   </section>
 
   <!-- SECCIÓN: Demo del Flujo -->

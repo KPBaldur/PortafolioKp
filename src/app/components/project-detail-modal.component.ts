@@ -82,4 +82,25 @@ export class ProjectDetailModalComponent implements OnInit, OnDestroy, OnChanges
       window.open(url, '_blank', 'noopener,noreferrer');
     }
   }
+
+  /** Obtiene la etiqueta amigable del estado */
+  getStatusLabel(status?: string): string {
+    switch (status) {
+      case 'finalizado': return 'Finalizado';
+      case 'actualizado': return 'Actualizado';
+      case 'trabajando': return 'Trabajando';
+      case 'evolutivo': return 'Evolución Continua';
+      default: return '';
+    }
+  }
+
+  /** Obtiene la etiqueta amigable del nivel */
+  getLevelLabel(level?: string): string {
+    switch (level) {
+      case 'senior': return 'Senior';
+      case 'mid': return 'Mid';
+      case 'junior': return 'Junior';
+      default: return '';
+    }
+  }
 }

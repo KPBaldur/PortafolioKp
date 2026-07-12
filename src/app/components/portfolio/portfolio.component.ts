@@ -28,23 +28,76 @@ export class PortfolioComponent implements OnInit {
   currentImage = 0;
   lastDirection: 'left' | 'right' | 'fade' = 'fade'; // para animaciones CSS existentes
 
+  // Filtros
+  allProjectsInCategory: Project[] = [];
+  selectedLevelFilter: string = 'all';
+  selectedStatusFilter: string = 'all';
+
+  levelFilterOptions = [
+    { value: 'all', label: 'Todos' },
+    { value: 'senior', label: 'Senior' },
+    { value: 'mid', label: 'Mid' },
+    { value: 'junior', label: 'Junior' }
+  ];
+
+  statusFilterOptions = [
+    { value: 'all', label: 'Todos' },
+    { value: 'finalizado', label: 'Finalizado' },
+    { value: 'actualizado', label: 'Actualizado' },
+    { value: 'trabajando', label: 'Trabajando' },
+    { value: 'evolutivo', label: 'Evolución Continua' }
+  ];
+
   constructor(private projectsService: ProjectsService) {}
 
   ngOnInit() {
-    this.projects = this.projectsService.getProjects(this.selectedCategory);
-    this.selectedProject = this.projects[0] ?? null;
+    this.allProjectsInCategory = this.projectsService.getProjects(this.selectedCategory);
+    this.applyFilters();
   }
 
   /** Cambio de categoría (tabs) */
   selectCategory(cat: CategoryId) {
     if (this.selectedCategory === cat) return;
     this.selectedCategory = cat;
-    this.projects = this.projectsService.getProjects(cat);
+    
+    // Resetear filtros al cambiar de pestaña
+    this.selectedLevelFilter = 'all';
+    this.selectedStatusFilter = 'all';
+    
+    this.allProjectsInCategory = this.projectsService.getProjects(cat);
+    this.applyFilters();
+    this.lastDirection = 'fade';
+  }
 
-    // Reset del carrusel
+  /** Aplicar filtros combinados */
+  applyFilters() {
+    this.projects = this.allProjectsInCategory.filter(project => {
+      const matchLevel = this.selectedLevelFilter === 'all' || project.level === this.selectedLevelFilter;
+      const matchStatus = this.selectedStatusFilter === 'all' || project.statusTag === this.selectedStatusFilter;
+      return matchLevel && matchStatus;
+    });
+
     this.selectedProject = this.projects[0] ?? null;
     this.currentImage = 0;
-    this.lastDirection = 'fade';
+  }
+
+  /** Filtrar por nivel */
+  filterByLevel(level: string) {
+    this.selectedLevelFilter = level;
+    this.applyFilters();
+  }
+
+  /** Filtrar por estado */
+  filterByStatus(status: string) {
+    this.selectedStatusFilter = status;
+    this.applyFilters();
+  }
+
+  /** Restablecer todos los filtros */
+  resetFilters() {
+    this.selectedLevelFilter = 'all';
+    this.selectedStatusFilter = 'all';
+    this.applyFilters();
   }
 
   /** Selección desde la lista lateral */
@@ -101,15 +154,41 @@ export class PortfolioComponent implements OnInit {
     this.selectedProjectForModal = null;
   }
 
-  /** Ayuda para estado vacío */
-  get isEmpty(): boolean {
-    return this.projects.length === 0;
+  /** Comprueba si la categoría actual está completamente vacía */
+  get isCategoryEmpty(): boolean {
+    return this.allProjectsInCategory.length === 0;
+  }
+
+  /** Comprueba si no hay resultados debido a los filtros */
+  get isFilterEmpty(): boolean {
+    return !this.isCategoryEmpty && this.projects.length === 0;
   }
 
   /** Abrir demo del proyecto */
   openProjectDemo(project: Project) {
     if (project.demo) {
       window.open(project.demo, '_blank', 'noopener,noreferrer');
+    }
+  }
+
+  /** Obtiene la etiqueta amigable del estado */
+  getStatusLabel(status?: string): string {
+    switch (status) {
+      case 'finalizado': return 'Finalizado';
+      case 'actualizado': return 'Actualizado';
+      case 'trabajando': return 'Trabajando';
+      case 'evolutivo': return 'Evolución Continua';
+      default: return '';
+    }
+  }
+
+  /** Obtiene la etiqueta amigable del nivel */
+  getLevelLabel(level?: string): string {
+    switch (level) {
+      case 'senior': return 'Senior';
+      case 'mid': return 'Mid';
+      case 'junior': return 'Junior';
+      default: return '';
     }
   }
 }

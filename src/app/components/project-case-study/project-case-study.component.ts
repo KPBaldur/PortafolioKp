@@ -12,6 +12,14 @@ export class ProjectCaseStudyComponent implements OnInit {
   project: Project | null = null;
   nextProject: Project | null = null;
 
+  get challengeParagraphs(): string[] {
+    if (!this.project?.challenge) return [];
+    return this.project.challenge
+      .split(/\n\s*\n/)
+      .map(p => p.trim())
+      .filter(p => p.length > 0);
+  }
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,

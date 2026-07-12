@@ -26,8 +26,20 @@
 
     <!-- Project content -->
     <div class="project-content">
-      <span *ngIf="project.isClientProject" class="project-modal-badge client-badge">Proyecto para Cliente</span>
-      <span *ngIf="!project.isClientProject && project.badge" class="project-modal-badge default-badge">{{ project.badge }}</span>
+      <div class="modal-badges-container">
+        <span *ngIf="project.isClientProject" class="project-modal-badge client-badge">Proyecto para Cliente</span>
+        <span *ngIf="!project.isClientProject && project.badge" class="project-modal-badge default-badge">{{ project.badge }}</span>
+        
+        <!-- Nivel -->
+        <span *ngIf="project.level" class="project-modal-badge level-modal-badge" [class]="'badge-level-' + project.level">
+          {{ getLevelLabel(project.level) }}
+        </span>
+        
+        <!-- Estado -->
+        <span *ngIf="project.statusTag" class="project-modal-badge status-modal-badge" [class]="project.statusTag">
+          {{ getStatusLabel(project.statusTag) }}
+        </span>
+      </div>
       
       <h2 class="project-title">{{ project.title }}</h2>
       

@@ -13,8 +13,40 @@
     </button>
   </div>
 
-  <!-- Estado vacío -->
-  <div *ngIf="isEmpty" class="empty-state">
+  <!-- Filtros -->
+  <div class="portfolio-filters" *ngIf="!isCategoryEmpty">
+    <div class="filter-group">
+      <span class="filter-label"><i class="bx bx-layer"></i> Seniority:</span>
+      <div class="filter-options">
+        <button 
+          *ngFor="let opt of levelFilterOptions" 
+          class="filter-opt-btn"
+          [class.active]="selectedLevelFilter === opt.value"
+          (click)="filterByLevel(opt.value)"
+        >
+          {{ opt.label }}
+        </button>
+      </div>
+    </div>
+    
+    <div class="filter-group">
+      <span class="filter-label"><i class="bx bx-purchase-tag-alt"></i> Estado:</span>
+      <div class="filter-options">
+        <button 
+          *ngFor="let opt of statusFilterOptions" 
+          class="filter-opt-btn"
+          [class.active]="selectedStatusFilter === opt.value"
+          [class]="opt.value"
+          (click)="filterByStatus(opt.value)"
+        >
+          {{ opt.label }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Estado vacío (Categoría vacía) -->
+  <div *ngIf="isCategoryEmpty" class="empty-state">
     <h3>Próximamente nuevos proyectos</h3>
     <p>
       Esta sección aún no tiene trabajos publicados.
@@ -22,19 +54,37 @@
     </p>
   </div>
 
+  <!-- Estado vacío (Filtros sin resultados) -->
+  <div *ngIf="isFilterEmpty" class="empty-state filter-empty-state">
+    <h3>Sin resultados</h3>
+    <p>
+      No se encontraron proyectos con el nivel de seniority y estado seleccionados.
+    </p>
+    <button class="btn btn-secondary mt-sm" (click)="resetFilters()">
+      <i class="bx bx-refresh"></i> Restablecer Filtros
+    </button>
+  </div>
+
   <!-- Contenido -->
-  <div *ngIf="!isEmpty" class="portfolio-container">
+  <div *ngIf="!isCategoryEmpty && !isFilterEmpty" class="portfolio-container">
     <!-- Vista de cuadrícula para Web & Software -->
     <div *ngIf="selectedCategory === 'web'" class="web-projects-grid">
       <div
         *ngFor="let project of projects"
         class="web-project-card"
         [class.featured]="project.featured"
+        [class.level-senior]="project.level === 'senior'"
+        [class.level-mid]="project.level === 'mid'"
+        [class.level-junior]="project.level === 'junior'"
         (click)="project.featured && project.slug ? null : openModal(project)"
         [routerLink]="project.featured && project.slug ? ['/portafolio', project.slug] : null"
       >
         <div class="web-project-image-container">
-          <span *ngIf="project.badge" class="project-badge">{{ project.badge }}</span>
+          <div class="project-badges-left">
+            <span *ngIf="project.level" class="level-badge" [class]="'badge-level-' + project.level">{{ getLevelLabel(project.level) }}</span>
+            <span *ngIf="project.badge" class="project-badge">{{ project.badge }}</span>
+          </div>
+          <span *ngIf="project.statusTag" class="status-badge" [class]="project.statusTag">{{ getStatusLabel(project.statusTag) }}</span>
           <img *ngIf="project.images && project.images.length > 0; else fallbackImg" [src]="project.images[0]" [alt]="project.title" class="web-project-image" />
           <ng-template #fallbackImg>
             <div class="web-project-image-fallback">

@@ -18,6 +18,8 @@ export interface Project {
   isClientProject?: boolean;
   clientRole?: string;
   businessResult?: string;
+  level?: 'senior' | 'mid' | 'junior';
+  statusTag?: 'finalizado' | 'actualizado' | 'trabajando' | 'evolutivo';
 }
 
 export type CategoryId = 'web' | 'games';
@@ -28,6 +30,33 @@ export type CategoryId = 'web' | 'games';
 export class ProjectsService {
   private data: Record<CategoryId, Project[]> = {
     web: [
+      {
+        title: 'Sistema de Etiquetado Zebra ZPL II Desktop',
+        tech: 'C# – .NET 8 – WPF – ZPL II – Odoo API – ClosedXML – GitHub Actions – Velopack',
+        description: 'Aplicación de escritorio que conecta de forma nativa a impresoras Zebra para la impresión de etiquetas, conectado con Odoo ERP.',
+        images: [],
+        featured: true,
+        badge: 'Proyecto Empresarial',
+        highlights: [
+          'Integración en tiempo real con sistemas ERP vía JSON-RPC',
+          'Comunicación nativa RAW/ZPL II con impresoras Zebra',
+          'Carga masiva de datos desde Excel (ClosedXML)',
+          'CI/CD automatizado con GitHub Actions y actualización silenciosa (Velopack)'
+        ],
+        slug: 'sie',
+        challenge: `Como Ingeniero de Soporte TI para una importante cadena de retail, identifiqué un problema sistemático que generaba una alta carga operativa tanto para nuestro departamento como para las sucursales: la configuración, calibración y cambio de consumibles en nuestros equipos de impresión Zebra. Las constantes fallas al imprimir etiquetas de precios y códigos de barras generaban picos de incidencias que interrumpían el trabajo de los vendedores de primera línea.
+
+        Para resolver este desafío, tomé la iniciativa de desarrollar una solución de software capaz de comunicarse de forma nativa con cualquier modelo de impresora Zebra de la empresa. El enfoque principal fue la adaptabilidad y la experiencia del usuario final; el sistema soporta sin problemas hardware antiguo que opera a 203 dpi, como los modelos GC420t y ZD220. Gracias a su interfaz de calibración asistida, el personal de tienda adquirió total autonomía para resolver problemas básicos de hardware y cambios de rollo, sin necesidad de escalar tickets a TI.
+
+        Adicionalmente, diseñé la arquitectura del software pensando en la escalabilidad del negocio. Implementé un flujo de CI/CD utilizando GitHub Actions para la gestión de actualizaciones. Ahora, cuando el departamento de marketing necesita alterar el diseño de las etiquetas de ofertas o precios, un simple commit dispara un flujo de trabajo que notifica automáticamente a las aplicaciones en las sucursales. El software solicita una confirmación a los usuarios y se actualiza de forma transparente, sin interrumpir el flujo de ventas.
+
+        Esta iniciativa logró reducir las incidencias relacionadas con impresoras en casi un 90%, optimizando radicalmente los tiempos de nuestro departamento de TI y mejorando la calidad del trabajo diario en todas las tiendas.`,
+        videoUrl: '',
+        architectureImage: '',
+        architectureNote: '// TODO: contenido pendiente de Kevin',
+        level: 'senior',
+        statusTag: 'evolutivo'
+      },
       {
         title: 'Sistema de Monitoreo SGIC - Monitoreo en vivo de sucursales',
         tech: 'Python – FastAPI – Uvicorn – React – Zustand – TailwindCSS',
@@ -50,26 +79,9 @@ export class ProjectsService {
         challenge: '// TODO: contenido pendiente de Kevin',
         videoUrl: '',
         architectureImage: '',
-        architectureNote: '// TODO: contenido pendiente de Kevin'
-      },
-      {
-        title: 'Sistema Integrado de Etiquetado (SIE)',
-        tech: 'C# – .NET 8 – WPF – ZPL II – Odoo API – ClosedXML – GitHub Actions – Velopack',
-        description: 'Aplicación de escritorio nativa que automatiza el etiquetado de precios y bodega, integrando impresión térmica industrial con el ERP Odoo.',
-        images: [],
-        featured: true,
-        badge: 'Proyecto Empresarial',
-        highlights: [
-          'Integración en tiempo real con Odoo ERP vía JSON-RPC',
-          'Comunicación nativa RAW/ZPL II con impresoras Zebra',
-          'Carga masiva de datos desde Excel (ClosedXML)',
-          'CI/CD automatizado con GitHub Actions y actualización silenciosa (Velopack)'
-        ],
-        slug: 'sie',
-        challenge: '// TODO: contenido pendiente de Kevin',
-        videoUrl: '',
-        architectureImage: '',
-        architectureNote: '// TODO: contenido pendiente de Kevin'
+        architectureNote: '// TODO: contenido pendiente de Kevin',
+        level: 'senior',
+        statusTag: 'actualizado'
       },
       {
         title: 'API Regular Show',
@@ -83,6 +95,8 @@ export class ProjectsService {
         ],
         repo: 'https://github.com/KPBaldur/ApiRegularShow',
         demo: 'https://kpbaldur.github.io/RegularShowWiki/index.html',
+        level: 'mid',
+        statusTag: 'finalizado'
       },
       {
         title: 'Soluciones Luis Maldonado',
@@ -97,7 +111,9 @@ export class ProjectsService {
         demo: 'https://kpbaldur.github.io/LuisMaldonadoSoluciones',
         isClientProject: true,
         clientRole: 'Diseño y desarrollo end-to-end para el cliente, desde el brief inicial hasta el despliegue.',
-        businessResult: '// TODO: contenido pendiente de Kevin (Mejora del 20% en el embudo de captación de leads.)'
+        businessResult: '// TODO: contenido pendiente de Kevin (Mejora del 20% en el embudo de captación de leads.)',
+        level: 'junior',
+        statusTag: 'finalizado'
       },
       {
         title: 'Todo App Roll v2.0',
@@ -109,7 +125,9 @@ export class ProjectsService {
           'assets/img/portfolio/TodoAppRollv02/TodoAppRollV02-02.png',
           'assets/img/portfolio/TodoAppRollv02/TodoAppRollV02-03.png',
         ],
-        repo: 'https://github.com/KPBaldur/TodoAppRoll.V02'
+        repo: 'https://github.com/KPBaldur/TodoAppRoll.V02',
+        level: 'junior',
+        statusTag: 'trabajando'
       },
     ],
     games: []

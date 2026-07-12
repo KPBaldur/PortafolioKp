@@ -167,14 +167,23 @@
 }
 
 .web-project-card.featured {
-  grid-column: span 2;
-  border-color: rgba(0, 195, 255, 0.35);
+  /* Todos los proyectos tienen el mismo tamaño de grilla */
+  border-color: rgba(0, 195, 255, 0.2);
 }
 
-.project-badge {
+/* --- Posicionamiento de Badges en Tarjeta --- */
+.project-badges-left {
   position: absolute;
   top: 12px;
   left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 2;
+  align-items: flex-start;
+}
+
+.project-badge {
   background: rgba(0, 195, 255, 0.2);
   border: 1px solid rgba(0, 195, 255, 0.5);
   color: #cfefff;
@@ -183,7 +192,111 @@
   padding: 4px 10px;
   border-radius: 20px;
   backdrop-filter: blur(4px);
+}
+
+/* Nivel Badge */
+.level-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-level-senior {
+  color: #FFB703;
+  border: 1px solid rgba(251, 133, 0, 0.45);
+  background: rgba(251, 133, 0, 0.15);
+}
+
+.badge-level-mid {
+  color: #E2C5FF;
+  border: 1px solid rgba(168, 85, 247, 0.45);
+  background: rgba(168, 85, 247, 0.15);
+}
+
+.badge-level-junior {
+  color: #A3F7BF;
+  border: 1px solid rgba(45, 212, 191, 0.4);
+  background: rgba(45, 212, 191, 0.15);
+}
+
+/* Estado Badge */
+.status-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
   z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-badge.finalizado {
+  color: #2DD4BF;
+  border: 1px solid rgba(45, 212, 191, 0.4);
+  background: rgba(45, 212, 191, 0.15);
+}
+
+.status-badge.actualizado {
+  color: #C084FC;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  background: rgba(168, 85, 247, 0.15);
+}
+
+.status-badge.trabajando {
+  color: #38BDF8;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  background: rgba(56, 189, 248, 0.15);
+}
+
+.status-badge.evolutivo {
+  color: #FF2A85;
+  border: 1px solid rgba(255, 0, 127, 0.45);
+  background: rgba(255, 0, 127, 0.15);
+  box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
+}
+
+/* --- Brillos traseros distintivos por Nivel (Senior, Mid, Junior) --- */
+.web-project-card.level-senior {
+  border-color: rgba(251, 133, 0, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), 0 0 15px rgba(251, 133, 0, 0.08);
+}
+.web-project-card.level-senior:hover {
+  transform: translateY(-6px);
+  border-color: rgba(251, 133, 0, 0.65);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.55), 
+              0 0 35px rgba(251, 133, 0, 0.4), 
+              0 0 15px rgba(255, 215, 0, 0.25);
+}
+
+.web-project-card.level-mid {
+  border-color: rgba(168, 85, 247, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), 0 0 15px rgba(168, 85, 247, 0.08);
+}
+.web-project-card.level-mid:hover {
+  transform: translateY(-6px);
+  border-color: rgba(168, 85, 247, 0.65);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.55), 
+              0 0 35px rgba(168, 85, 247, 0.4), 
+              0 0 15px rgba(56, 189, 248, 0.35); /* Resplandor azul agregado */
+}
+
+.web-project-card.level-junior {
+  border-color: rgba(45, 212, 191, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), 0 0 15px rgba(45, 212, 191, 0.08);
+}
+.web-project-card.level-junior:hover {
+  transform: translateY(-6px);
+  border-color: rgba(45, 212, 191, 0.6);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.55), 
+              0 0 30px rgba(45, 212, 191, 0.35);
 }
 
 .project-highlights {
@@ -372,5 +485,132 @@
   
   .web-project-image {
     height: 200px;
+  }
+}
+
+/* === Filtros de Portafolio === */
+.portfolio-filters {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 1.25rem var(--spacing-md);
+  margin: 0 auto 2rem;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #cfd8e3;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 100px;
+}
+
+.filter-label i {
+  font-size: 1.1rem;
+  color: var(--color-celeste, #00c3ff);
+}
+
+.filter-options {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.filter-opt-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cfefff;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 550;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-opt-btn:hover {
+  background: rgba(0, 195, 255, 0.08);
+  border-color: rgba(0, 195, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.filter-opt-btn.active {
+  background: rgba(0, 195, 255, 0.18);
+  border-color: rgba(0, 195, 255, 0.6);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(0, 195, 255, 0.15);
+}
+
+/* Custom coloring for status active buttons */
+.filter-opt-btn.active.finalizado {
+  background: rgba(45, 212, 191, 0.18);
+  border-color: rgba(45, 212, 191, 0.6);
+  color: #2DD4BF;
+  box-shadow: 0 0 12px rgba(45, 212, 191, 0.15);
+}
+
+.filter-opt-btn.active.actualizado {
+  background: rgba(168, 85, 247, 0.18);
+  border-color: rgba(168, 85, 247, 0.6);
+  color: #E2C5FF;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.15);
+}
+
+.filter-opt-btn.active.trabajando {
+  background: rgba(56, 189, 248, 0.18);
+  border-color: rgba(56, 189, 248, 0.6);
+  color: #38BDF8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.15);
+}
+
+.filter-opt-btn.active.evolutivo {
+  background: rgba(255, 0, 127, 0.18);
+  border-color: rgba(255, 0, 127, 0.6);
+  color: #FF2A85;
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.2);
+}
+
+/* Empty filter results state */
+.filter-empty-state {
+  border-color: rgba(255, 0, 127, 0.2);
+  box-shadow: 0 8px 32px rgba(255, 0, 127, 0.05);
+}
+
+.filter-empty-state h3 {
+  background: linear-gradient(45deg, #FF2A85, var(--color-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Adjust filters in mobile */
+@media (max-width: 768px) {
+  .portfolio-filters {
+    padding: 1rem;
+    gap: 0.8rem;
+  }
+  
+  .filter-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .filter-label {
+    min-width: unset;
   }
 }
