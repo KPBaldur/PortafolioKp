@@ -35,12 +35,6 @@
     </div>
   </header>
 
-  <!-- SECCIÓN: El Desafío -->
-  <section class="case-study-section" *ngIf="project.challenge">
-    <h2>El Desafío</h2>
-    <p *ngFor="let paragraph of challengeParagraphs" class="challenge-text">{{ paragraph }}</p>
-  </section>
-
   <!-- SECCIÓN: Demo del Flujo -->
   <section class="case-study-section">
     <h2>Cómo Funciona</h2>
@@ -62,6 +56,12 @@
     </ng-template>
   </section>
 
+  <!-- SECCIÓN: El Desafío -->
+  <section class="case-study-section" *ngIf="project.challenge">
+    <h2>El Desafío</h2>
+    <p *ngFor="let paragraph of challengeParagraphs" class="challenge-text">{{ paragraph }}</p>
+  </section>
+
   <!-- SECCIÓN: Arquitectura -->
   <section class="case-study-section" *ngIf="project.architectureImage || project.architectureNote">
     <h2>Arquitectura</h2>
@@ -69,7 +69,7 @@
       <div class="architecture-image-container" *ngIf="project.architectureImage">
         <img [src]="project.architectureImage" [alt]="'Diagrama de arquitectura de ' + project.title" class="architecture-img">
       </div>
-      <p *ngIf="project.architectureNote" class="architecture-note">{{ project.architectureNote }}</p>
+      <p *ngFor="let paragraph of architectureNoteParagraphs" class="architecture-note">{{ paragraph }}</p>
     </div>
   </section>
 

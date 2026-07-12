@@ -20,6 +20,14 @@ export class ProjectCaseStudyComponent implements OnInit {
       .filter(p => p.length > 0);
   }
 
+  get architectureNoteParagraphs(): string[] {
+    if (!this.project?.architectureNote) return [];
+    return this.project.architectureNote
+      .split(/\n\s*\n/)
+      .map(p => p.trim())
+      .filter(p => p.length > 0);
+  }
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
