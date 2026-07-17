@@ -34,7 +34,13 @@ export class ProjectsService {
         title: 'Sistema de Etiquetado Zebra ZPL II Desktop',
         tech: 'C# – .NET 8 – WPF – ZPL II – Odoo API – ClosedXML – GitHub Actions – Velopack',
         description: 'Aplicación de escritorio que conecta de forma nativa a impresoras Zebra para la impresión de etiquetas, conectado con Odoo ERP.',
-        images: [],
+        images: [
+          'assets/img/portfolio/ProyectoEtiquetas/ProyectoEtiquetas-01.png',
+          'assets/img/portfolio/ProyectoEtiquetas/ProyectoEtiquetas-02.png',
+          'assets/img/portfolio/ProyectoEtiquetas/ProyectoEtiquetas-03.png',
+          'assets/img/portfolio/ProyectoEtiquetas/ProyectoEtiquetas-04.png',
+          'assets/img/portfolio/ProyectoEtiquetas/ProyectoEtiquetas-05.png',
+        ],
         featured: true,
         badge: 'Proyecto Empresarial',
         highlights: [
@@ -51,7 +57,7 @@ export class ProjectsService {
         Adicionalmente, diseñé la arquitectura del software pensando en la escalabilidad del negocio. Implementé un flujo de CI/CD utilizando GitHub Actions para la gestión de actualizaciones. Ahora, cuando el departamento de marketing necesita alterar el diseño de las etiquetas de ofertas o precios, un simple commit dispara un flujo de trabajo que notifica automáticamente a las aplicaciones en las sucursales. El software solicita una confirmación a los usuarios y se actualiza de forma transparente, sin interrumpir el flujo de ventas.
 
         Esta iniciativa logró reducir las incidencias relacionadas con impresoras en casi un 90%, optimizando radicalmente los tiempos de nuestro departamento de TI y mejorando la calidad del trabajo diario en todas las tiendas.`,
-        videoUrl: '',
+        videoUrl: 'assets/videos/EjemploFuncionamientoSistemaEtiquetas.mp4',
         architectureImage: 'assets/img/portfolio/ProyectoEtiquetas/ArquitecturaProyectoEtiquetasZebra.png',
         architectureNote: `Arquitectura del Sistema de Impresión de Etiquetas
 El proyecto es una aplicación de escritorio modular construida con .NET 8.0 y WPF, diseñada para optimizar y automatizar el proceso de etiquetado en el punto de venta. La arquitectura se basa en un modelo de tres capas con un fuerte enfoque en el desacoplamiento, la seguridad y la entrega continua.
