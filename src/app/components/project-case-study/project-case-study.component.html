@@ -1,90 +1,121 @@
-<div class="case-study-container" *ngIf="project">
-  <!-- HEADER -->
-  <header class="case-study-header">
-    <a [routerLink]="['/']" fragment="portfolio" class="back-link">
-      <i class="bx bx-arrow-back"></i> Volver al portafolio
-    </a>
-    
-    <div class="header-main-content">
-      <span *ngIf="project.badge" class="project-badge">{{ project.badge }}</span>
-      <h1 class="project-title">{{ project.title }}</h1>
-      <p class="project-description">{{ project.description }}</p>
+<div class="case-study-page-wrapper" *ngIf="project">
+  <div class="case-study-container">
+    <!-- HEADER -->
+    <header class="case-study-header">
+      <a [routerLink]="['/']" fragment="portfolio" class="back-link">
+        <i class="bx bx-arrow-back"></i> Volver al portafolio
+      </a>
       
-      <!-- Tech Stack -->
-      <div class="tech-stack-container">
-        <span *ngFor="let tech of project.tech.split(' – ')" class="tech-tag">{{ tech }}</span>
-      </div>
-
-      <!-- Action buttons / Confidentiality Notice -->
-      <div class="action-buttons-container">
-        <ng-container *ngIf="project.repo || project.demo; else confidential">
-          <a *ngIf="project.repo" [href]="project.repo" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-            <i class="bx bxl-github"></i> Ver Repositorio
-          </a>
-          <a *ngIf="project.demo" [href]="project.demo" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-            <i class="bx bx-link-external"></i> Ver Proyecto
-          </a>
-        </ng-container>
-        <ng-template #confidential>
-          <div class="confidentiality-notice">
-            <i class="bx bx-lock-alt"></i>
-            <span>🔒 Proyecto empresarial — código no divulgable por confidencialidad</span>
-          </div>
-        </ng-template>
-      </div>
-    </div>
-  </header>
-
-  <!-- SECCIÓN: Demo del Flujo -->
-  <section class="case-study-section">
-    <h2>Cómo Funciona</h2>
-    
-    <div class="video-container" *ngIf="project.videoUrl; else noVideo">
-      <video controls loop [poster]="project.images && project.images.length > 0 ? project.images[0] : ''">
-        <source [src]="project.videoUrl" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-    
-    <ng-template #noVideo>
-      <div class="video-placeholder-container">
-        <div *ngIf="project.images && project.images.length > 0" class="fallback-image-wrapper">
-          <img [src]="project.images[0]" [alt]="project.title" class="fallback-static-img">
+      <div class="header-main-content">
+        <span *ngIf="project.badge" class="project-badge">{{ project.badge }}</span>
+        <h1 class="project-title">{{ project.title }}</h1>
+        <p class="project-description">{{ project.description }}</p>
+        
+        <!-- Tech Stack -->
+        <div class="tech-stack-container">
+          <span *ngFor="let tech of project.tech.split(' – ')" class="tech-tag">{{ tech }}</span>
         </div>
-        <p class="video-placeholder-text">Video de demo próximamente</p>
-      </div>
-    </ng-template>
-  </section>
 
-  <!-- SECCIÓN: El Desafío -->
-  <section class="case-study-section" *ngIf="project.challenge">
-    <h2>El Desafío</h2>
-    <p *ngFor="let paragraph of challengeParagraphs" class="challenge-text">{{ paragraph }}</p>
-  </section>
-
-  <!-- SECCIÓN: Arquitectura -->
-  <section class="case-study-section" *ngIf="project.architectureImage || project.architectureNote">
-    <h2>Arquitectura</h2>
-    <div class="architecture-container">
-      <div class="architecture-image-container" *ngIf="project.architectureImage">
-        <img [src]="project.architectureImage" [alt]="'Diagrama de arquitectura de ' + project.title" class="architecture-img">
+        <!-- Action buttons / Confidentiality Notice -->
+        <div class="action-buttons-container">
+          <ng-container *ngIf="project.repo || project.demo; else confidential">
+            <a *ngIf="project.repo" [href]="project.repo" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              <i class="bx bxl-github"></i> Ver Repositorio
+            </a>
+            <a *ngIf="project.demo" [href]="project.demo" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <i class="bx bx-link-external"></i> Ver Proyecto
+            </a>
+          </ng-container>
+          <ng-template #confidential>
+            <div class="confidentiality-notice">
+              <i class="bx bx-lock-alt"></i>
+              <span>🔒 Proyecto empresarial — código no divulgable por confidencialidad</span>
+            </div>
+          </ng-template>
+        </div>
       </div>
-      <p *ngFor="let paragraph of architectureNoteParagraphs" class="architecture-note">{{ paragraph }}</p>
+    </header>
+
+    <!-- SECCIÓN: Demo del Flujo -->
+    <section class="case-study-section">
+      <h2>Cómo Funciona</h2>
+      
+      <div class="video-container" *ngIf="project.videoUrl; else noVideo">
+        <video controls loop [poster]="project.images && project.images.length > 0 ? project.images[0] : ''">
+          <source [src]="project.videoUrl" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      
+      <ng-template #noVideo>
+        <div class="video-placeholder-container">
+          <div *ngIf="project.images && project.images.length > 0" class="fallback-image-wrapper">
+            <img [src]="project.images[0]" [alt]="project.title" class="fallback-static-img">
+          </div>
+          <p class="video-placeholder-text">Video de demo próximamente</p>
+        </div>
+      </ng-template>
+    </section>
+
+    <!-- SECCIÓN: Galería de Imágenes -->
+    <section class="case-study-section" *ngIf="project.images && project.images.length > 0">
+      <h2>Galería de Capturas</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item" *ngFor="let image of project.images; let i = index" (click)="openLightbox(i)">
+          <img [src]="image" [alt]="'Captura ' + (i + 1) + ' de ' + project.title" class="gallery-img">
+          <div class="gallery-overlay">
+            <i class="bx bx-zoom-in"></i>
+            <span>Ampliar</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: El Desafío -->
+    <section class="case-study-section" *ngIf="project.challenge">
+      <h2>El Desafío</h2>
+      <p *ngFor="let paragraph of challengeParagraphs" class="challenge-text">{{ paragraph }}</p>
+    </section>
+
+    <!-- SECCIÓN: Arquitectura -->
+    <section class="case-study-section" *ngIf="project.architectureImage || project.architectureNote">
+      <h2>Arquitectura</h2>
+      <div class="architecture-container">
+        <div class="architecture-image-container" *ngIf="project.architectureImage">
+          <img [src]="project.architectureImage" [alt]="'Diagrama de arquitectura de ' + project.title" class="architecture-img">
+        </div>
+        <p *ngFor="let paragraph of architectureNoteParagraphs" class="architecture-note">{{ paragraph }}</p>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: Logros Técnicos -->
+    <section class="case-study-section" *ngIf="project.highlights && project.highlights.length > 0">
+      <h2>Logros Técnicos</h2>
+      <ul class="project-highlights">
+        <li *ngFor="let point of project.highlights">{{ point }}</li>
+      </ul>
+    </section>
+
+    <!-- FOOTER DE NAVEGACIÓN -->
+    <footer class="case-study-footer" *ngIf="nextProject">
+      <a [routerLink]="['/portafolio', nextProject.slug]" class="next-project-link">
+        Siguiente proyecto: {{ nextProject.title }} <i class="bx bx-right-arrow-alt"></i>
+      </a>
+    </footer>
+  </div>
+
+  <!-- Lightbox Overlay -->
+  <div class="lightbox-overlay" *ngIf="isLightboxOpen" (click)="closeLightbox()">
+    <button class="lightbox-close" (click)="closeLightbox()">&times;</button>
+    
+    <div class="lightbox-content" (click)="$event.stopPropagation()">
+      <button class="lightbox-nav prev" (click)="prevImage()" *ngIf="project.images.length > 1">❮</button>
+      <img [src]="project.images[activeImageIndex]" [alt]="'Captura ampliada ' + (activeImageIndex + 1)" class="lightbox-img">
+      <button class="lightbox-nav next" (click)="nextImage()" *ngIf="project.images.length > 1">❯</button>
+      
+      <div class="lightbox-counter" *ngIf="project.images.length > 1">
+        {{ activeImageIndex + 1 }} / {{ project.images.length }}
+      </div>
     </div>
-  </section>
-
-  <!-- SECCIÓN: Logros Técnicos -->
-  <section class="case-study-section" *ngIf="project.highlights && project.highlights.length > 0">
-    <h2>Logros Técnicos</h2>
-    <ul class="project-highlights">
-      <li *ngFor="let point of project.highlights">{{ point }}</li>
-    </ul>
-  </section>
-
-  <!-- FOOTER DE NAVEGACIÓN -->
-  <footer class="case-study-footer" *ngIf="nextProject">
-    <a [routerLink]="['/portafolio', nextProject.slug]" class="next-project-link">
-      Siguiente proyecto: {{ nextProject.title }} <i class="bx bx-right-arrow-alt"></i>
-    </a>
-  </footer>
+  </div>
 </div>

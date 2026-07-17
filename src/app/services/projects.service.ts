@@ -59,30 +59,32 @@ export class ProjectsService {
         Esta iniciativa logró reducir las incidencias relacionadas con impresoras en casi un 90%, optimizando radicalmente los tiempos de nuestro departamento de TI y mejorando la calidad del trabajo diario en todas las tiendas.`,
         videoUrl: 'assets/videos/EjemploFuncionamientoSistemaEtiquetas.mp4',
         architectureImage: 'assets/img/portfolio/ProyectoEtiquetas/ArquitecturaProyectoEtiquetasZebra.png',
-        architectureNote: `Arquitectura del Sistema de Impresión de Etiquetas
-El proyecto es una aplicación de escritorio modular construida con .NET 8.0 y WPF, diseñada para optimizar y automatizar el proceso de etiquetado en el punto de venta. La arquitectura se basa en un modelo de tres capas con un fuerte enfoque en el desacoplamiento, la seguridad y la entrega continua.
+        architectureNote: `El proyecto es una aplicación de escritorio modular construida con .NET 8.0, WPF, y ZPL II diseñada para optimizar y automatizar el proceso de etiquetado. La arquitectura se basa en un modelo de tres capas con un fuerte enfoque en el desacoplamiento, la seguridad y la entrega continua.
 
-A continuación, se detalla el flujo operativo y el ciclo de vida del software:
+        Flujo de vida del Software y Arquitectura.
 
-1. Flujo de Datos y Operación
-El núcleo de la aplicación se encarga de conectar la sesión del usuario con el hardware de forma eficiente y segura, siguiendo este flujo continuo:
+        1. Flujo de Datos y Operación
 
-Autenticación y Contexto de Sesión: El flujo comienza cuando el usuario ingresa sus credenciales en la interfaz. El sistema establece una conexión segura (vía JSON-RPC 2.0 sobre SSL) con la API del ERP central (Odoo). Esto no solo valida el acceso, sino que contextualiza la sesión, identificando el Punto de Venta específico desde el cual opera el usuario.
+        El core del software, se encarga de conectar la sesion del usuario con el sistema de ERP Odoo de manera eficiente y sin que perjudique su normal funcionamiento sin interrumpir el trabajo diario en Odoo.
 
-Recuperación de Datos: Una vez en el panel principal, el usuario o el lector de código de barras ingresa el identificador de un producto. La capa de servicios consulta el catálogo del ERP utilizando un patrón Strategy/Fallback (buscando primero por ISBN y, de ser necesario, por SKU interno). El sistema extrae únicamente los datos públicos y autorizados necesarios para la etiqueta, manteniendo la lógica compleja de negocio completamente aislada y protegida en el backend.
+        Autenticación y Contexto de Sesión: 
+        El flujo comienza cuando el usuario ingresa sus credenciales en la interfaz. El sistema establece una conexión segura (vía JSON-RPC 2.0 sobre SSL) con la API del ERP central (Odoo). Esto no solo valida el acceso, sino que contextualiza la sesión, identificando el Punto de Venta específico desde el cual opera el usuario.
 
-Traducción a Comandos ZPL II: Los datos obtenidos se almacenan temporalmente en modelos de datos ligeros (DTOs) en la memoria de la aplicación. El servicio de impresión toma estos datos y los inyecta en plantillas predefinidas, construyendo dinámicamente comandos en lenguaje ZPL II (Zebra Programming Language), adaptándose al formato solicitado (etiqueta normal, oferta, etc.).
+        Recuperación de Datos: 
+        Una vez en el panel principal, el usuario o el lector de código de barras ingresa el identificador de un producto. La capa de servicios consulta el catálogo del ERP utilizando un patrón Strategy/Fallback (buscando primero por ISBN y, de ser necesario, por codigos internos que maneja la empresa). El sistema extrae únicamente los datos públicos y autorizados necesarios para la etiqueta, manteniendo la lógica compleja de negocio completamente aislada y protegida en el backend.
 
-Túnel Transaccional de Hardware: Para evitar la latencia y los errores comunes de los drivers de Windows, el sistema utiliza interoperabilidad nativa (P/Invoke) para comunicarse directamente con la API Winspool del sistema operativo. Abre un "túnel RAW" seguro hacia la impresora (como los modelos Zebra GC420t o ZD220), envía los comandos ZPL II puros y cierra la transacción. Esto garantiza una impresión instantánea, precisa y sin riesgo de fugas de memoria.
+        Traducción a Comandos ZPL II: Los datos obtenidos se almacenan temporalmente en modelos de datos ligeros (DTOs) en la memoria de la aplicación. El servicio de impresión toma estos datos y los inyecta en plantillas predefinidas, construyendo dinámicamente comandos en lenguaje ZPL II (Zebra Programming Language), adaptándose al formato solicitado (etiqueta normal, oferta, etc.).
 
-2. Integración Continua y Actualizaciones Automáticas (CI/CD)
-Para garantizar que todas las estaciones de trabajo cuenten siempre con la versión más estable sin requerir intervención manual, el proyecto implementa un pipeline moderno de CI/CD:
+        Túnel Transaccional de Hardware: Para evitar la latencia y los errores comunes de los drivers de Windows, el sistema utiliza interoperabilidad nativa (P/Invoke) para comunicarse directamente con la API Winspool del sistema operativo. Abre un "túnel RAW" seguro hacia la impresora (como los modelos Zebra GC420t o ZD220), envía los comandos ZPL II puros y cierra la transacción. Esto garantiza una impresión instantánea, precisa y sin riesgo de fugas de memoria.
 
-Despliegue Automatizado: Cada vez que se finaliza una nueva característica y se realiza un commit hacia la rama principal, un flujo de GitHub Actions entra en acción. Este pipeline compila la aplicación de forma autocontenida y ejecuta pruebas de integración.
+        2. Integración Continua y Actualizaciones Automáticas (CI/CD)
+        Para garantizar que todas las estaciones de trabajo cuenten siempre con la versión más estable sin requerir intervención manual, el proyecto implementa un pipeline moderno de CI/CD:
 
-Empaquetado y Distribución: Durante este proceso automatizado, se utiliza el gestor de releases Velopack para generar los paquetes diferenciales (.nupkg) y compilar el manifiesto de la versión. Estos archivos se publican automáticamente en los Releases del repositorio.
+        Despliegue Automatizado: Cada vez que se finaliza una nueva característica y se realiza un commit hacia la rama principal, un flujo de GitHub Actions entra en acción. Este pipeline compila la aplicación de forma autocontenida y ejecuta pruebas de integración.
 
-Actualización Silenciosa en el Cliente: Cuando el usuario abre la aplicación en su equipo, un proceso asíncrono en segundo plano consulta el repositorio en busca de nuevas versiones. Si detecta una actualización, la descarga de forma silenciosa. El sistema puede aplicar la actualización y reiniciar la aplicación al instante si el usuario lo autoriza, o bien, dejarla preparada para instalarse automáticamente la próxima vez que se cierre el programa. Esto asegura que el ciclo operativo de la tienda nunca se vea interrumpido por ventanas de carga o mantenimientos prolongados.`,
+        Empaquetado y Distribución: Durante este proceso automatizado, se utiliza el gestor de releases Velopack para generar los paquetes diferenciales (.nupkg) y compilar el manifiesto de la versión. Estos archivos se publican automáticamente en los Releases del repositorio.
+
+        Actualización Silenciosa en el Cliente: Cuando el usuario abre la aplicación en su equipo, un proceso asíncrono en segundo plano consulta el repositorio en busca de nuevas versiones. Si detecta una actualización, la descarga de forma silenciosa. El sistema puede aplicar la actualización y reiniciar la aplicación al instante si el usuario lo autoriza, o bien, dejarla preparada para instalarse automáticamente la próxima vez que se cierre el programa. Esto asegura que el ciclo operativo de la tienda nunca se vea interrumpido por ventanas de carga o mantenimientos prolongados.`,
         level: 'senior',
         statusTag: 'evolutivo'
       },
